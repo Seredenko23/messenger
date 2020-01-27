@@ -1,11 +1,19 @@
 import React from 'react';
+import {createStore, Store} from "redux";
+import rootReducer from "./redux/reducers";
+import { Provider } from "react-redux";
+
 import './App.scss';
+
+const store: Store = createStore(rootReducer);
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <Provider store={store}>
+      <div className="App">
 
-    </div>
+      </div>
+    </Provider>
   );
 };
 
