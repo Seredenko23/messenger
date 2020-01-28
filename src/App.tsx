@@ -1,12 +1,14 @@
 import React from 'react';
-import {applyMiddleware, createStore, Store} from "redux";
+import {applyMiddleware, CombinedState, createStore, Store} from "redux";
 import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
 import Navigation from "./components/Navigation/Navigation";
+import { websocketMiddleware } from "./middleware/websocket";
+
 import './App.scss';
 
-const store: Store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk, websocketMiddleware));
 
 const App: React.FC = () => {
   return (

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import SignUp from "../SignUp/SignUp";
 
 import './Navigation.scss';
-import SignUp from "../SignUp/SignUp";
 
 class Navigation extends Component {
   render() {

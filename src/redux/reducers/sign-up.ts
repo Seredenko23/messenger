@@ -5,7 +5,7 @@ import {
 } from "../actions/sign-up";
 import { RegisterAction } from "../actions/types/RegisterActions";
 import { Reducer } from "redux";
-import {RegisterState} from "./types/RegisterState";
+import { RegisterState } from "./types/RegisterState";
 
 const initialState: RegisterState = {
   registerIsPending: false
