@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import {loginReducer} from "./LoginForm";
 
 const rootReducer = combineReducers({
-    //Place your reducers here
+    loginReducer
 });
 
 export default rootReducer;
