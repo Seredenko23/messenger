@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
 import Navigation from "./components/Navigation/Navigation";
 import { websocketMiddleware } from "./middleware/websocket";
-
 import './App.scss';
 
 const store = createStore(rootReducer, applyMiddleware(thunk, websocketMiddleware));

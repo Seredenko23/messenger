@@ -1,16 +1,18 @@
 export interface IRegister {
   type: string;
-  payload: boolean
+  payload: boolean;
 }
 
 export interface IRegisterSuccess {
   type: string;
-  payload: boolean
+  payload: boolean;
 }
 
 export interface IRegisterError {
   type: string;
-  payload: boolean
+  payload: boolean;
 }
 
-export type RegisterAction = IRegister | IRegisterSuccess | IRegisterError;
+export type RegisterActions = IRegister
+  | IRegisterSuccess
+  | IRegisterError;
