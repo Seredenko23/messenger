@@ -1,5 +1,3 @@
-import {REGISTER_ERROR, REGISTER_PENDING, REGISTER_SUCCESS} from "../sign-up";
-
 export interface IRegister {
   type: string;
   payload: boolean

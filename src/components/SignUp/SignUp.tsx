@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {registerUser} from "../../redux/actions/sign-up";
+import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { registerUser } from "../../redux/actions/sign-up";
+import { connectWebsocket } from "../../redux/actions/websocket";
+import { connect } from "react-redux";
 
 import './SignUp.scss'
 
 interface Props {
-  registerUser: (user) => void
+  registerUser: (user) => void;
+  connectWebsocket: (url: string) => void;
 }
 
 interface State {
@@ -24,6 +25,10 @@ class SignUp extends Component<Props, State> {
       email: '',
       password: '',
     }
+  }
+
+  componentDidMount(): void {
+    this.props.connectWebsocket("wss://websocket-echo-server.herokuapp.com")
   }
 
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -94,7 +99,8 @@ class SignUp extends Component<Props, State> {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerUser: bindActionCreators(registerUser, dispatch)
+    registerUser: bindActionCreators(registerUser, dispatch),
+    connectWebsocket: bindActionCreators(connectWebsocket, dispatch),
   }
 };
 
