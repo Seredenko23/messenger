@@ -7,6 +7,6 @@ const rootReducer = combineReducers({
   signUp,
   websocket,
   loginReducer,
-});
+})
 
 export default rootReducer;

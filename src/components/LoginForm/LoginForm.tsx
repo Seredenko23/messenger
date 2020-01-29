@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import { login } from "../../redux/actions/login";
-import {bindActionCreators, Dispatch} from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 
 interface Props {
   login: (email: string, password: string) => (dispatch: Dispatch) => void;
