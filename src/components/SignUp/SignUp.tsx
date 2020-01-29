@@ -9,14 +9,13 @@ import './SignUp.scss'
 interface Props {
   registerUser: (user) => void;
   connectWebsocket: (url: string) => void;
-  connected: boolean;
 }
 
 interface State {
   [param: string]: string;
 }
 
-class SignUp extends Component<any, State> {
+class SignUp extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {

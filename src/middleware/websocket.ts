@@ -1,13 +1,15 @@
-let websocket;
+import {Middleware} from "redux";
 
-export const websocketMiddleware = store => next => action => {
+let websocket: WebSocket;
+
+export const websocketMiddleware: Middleware = store => next => action => {
   switch (action.type) {
     case 'WEBSOCKET:CONNECT':
       websocket = new WebSocket(action.payload.url);
 
       websocket.onopen = () => store.dispatch({ type: 'WEBSOCKET:OPEN' });
-      websocket.onclose = (event) => store.dispatch({ type: 'WEBSOCKET:CLOSE', payload: event });
-      websocket.onmessage = (event) => store.dispatch({ type: 'WEBSOCKET:MESSAGE', payload: event });
+      websocket.onclose = (event: Event) => store.dispatch({ type: 'WEBSOCKET:CLOSE', payload: event });
+      websocket.onmessage = (event: Event) => store.dispatch({ type: 'WEBSOCKET:MESSAGE', payload: event });
 
       break;
     case 'WEBSOCKET:SEND':

@@ -1,5 +1,5 @@
 import React from 'react';
-import {applyMiddleware, CombinedState, createStore, Store} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
