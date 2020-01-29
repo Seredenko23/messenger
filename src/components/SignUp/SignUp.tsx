@@ -27,10 +27,6 @@ class SignUp extends Component<Props, State> {
     }
   }
 
-  componentDidMount(): void {
-    this.props.connectWebsocket("wss://websocket-echo-server.herokuapp.com")
-  }
-
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value

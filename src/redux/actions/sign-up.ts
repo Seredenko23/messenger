@@ -26,7 +26,9 @@ const registerError: ActionCreator<Action> = () => {
   }
 };
 
-export const registerUser = (user: User) => {
+export const registerUser: (user: User)
+  => (dispatch: Dispatch)
+  => void = (user: User) => {
   return (dispatch: Dispatch) => {
     dispatch(register());
     setTimeout(() => {

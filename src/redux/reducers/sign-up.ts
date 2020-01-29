@@ -4,7 +4,7 @@ import {
   REGISTER_SUCCESS,
 } from "../actions/sign-up";
 
-import { RegisterAction } from "../actions/types/RegisterActions";
+import { RegisterActions} from "../actions/types/RegisterActions";
 import { Reducer } from "redux";
 import { RegisterState } from "./types/RegisterState";
 
@@ -12,7 +12,7 @@ const initialState: RegisterState = {
   registerIsPending: false
 };
 
-export const signUp: Reducer<RegisterState, RegisterAction> = (state=initialState, action) => {
+export const signUp: Reducer<RegisterState, RegisterActions> = (state=initialState, action) => {
   switch (action.type) {
     case REGISTER_PENDING:
       return {

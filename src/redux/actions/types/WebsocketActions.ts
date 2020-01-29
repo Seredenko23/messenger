@@ -1,8 +1,8 @@
 export interface IWebsocketConnect {
   type: string;
   payload: {
-    url: string
+    url: string;
   }
 }
 
-export type WebsocketAction = IWebsocketConnect;
+export type WebsocketActions = IWebsocketConnect;
