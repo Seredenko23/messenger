@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import { login } from "../../redux/actions/login";
 import { bindActionCreators, Dispatch } from "redux";
-
+import './LoginForm.scss'
+import FormInput from "../FormInput/FormInput";
+import FormButton from "../FormButton/FormButton";
 interface Props {
   login: (email: string, password: string) => (dispatch: Dispatch) => void;
   isLoginPending: boolean;
@@ -39,29 +41,47 @@ class LoginForm extends Component<Props,State> {
   render() {
     let {isLoginPending, isLoginSuccess, loginError} = this.props;
     return (
-      <div className='login-form-wrapper'
-           onSubmit={this.onSubmit}
-      >
-        <form name='loginForm'>
-          <label htmlFor="">Email:</label>
-          <input type='email'
-                 name='email'
-                 onChange={this.changeHandle}
-          />
-          <label htmlFor=''>Password:</label>
-          <input type='password'
-                 name='password'
-                 onChange={this.changeHandle}
-          />
-
-          <input type='submit'
-                 value='Login'
-          />
-          {isLoginPending && <div>Please wait</div>}
-          {isLoginSuccess && <div>Welcome back!</div>}
-          {loginError && <div>{loginError.message}</div>}
-        </form>
+    <div className='login'>
+    <div className='wrapper'>
+      <div className='block-login'>
+      <div className='login-form-wrapper'>
+          <form name='loginForm'
+                className='login-form'
+          >
+            <label htmlFor=""
+                   className='label'
+            >
+              Email:
+            </label>
+            <FormInput type="text"
+                       name={'email'}
+                       placeholder={'Email'}
+                       handler={this.changeHandle}
+                       value={this.state.email}
+            />
+            <label htmlFor=''
+                   className='label'
+            >
+              Password:
+            </label>
+            <FormInput type="password"
+                       name={'password'}
+                       placeholder={'Password'}
+                       handler={this.changeHandle}
+                       value={this.state.password}
+            />
+            <FormButton type={'submit'}
+            >
+              Submit
+            </FormButton>
+            {isLoginPending && <div>Please wait</div>}
+            {isLoginSuccess && <div>Welcome back!</div>}
+            {loginError && <div>{loginError.message}</div>}
+          </form>
+        </div>
       </div>
+    </div>
+   </div>
     );
   }
 }

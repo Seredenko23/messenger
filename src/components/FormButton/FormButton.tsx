@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './FormButton.scss'
 interface Props {
   type: 'button' | 'reset' | 'submit' | undefined
 }
