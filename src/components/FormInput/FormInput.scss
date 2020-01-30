@@ -1,0 +1,14 @@
+@import "../../style/variables";
+
+.form-input {
+  height: 50px;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  margin: 5px 0;
+  padding: 0 25px;
+  background-color: $inputBgColor;
+  color: $textColor;
+  outline: none;
+  font-size: 14pt;
+}

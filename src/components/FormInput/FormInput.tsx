@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './FormInput.scss'
 
 interface Props {
   type: string;
@@ -14,6 +15,7 @@ class FormInput extends Component<Props> {
       <input className='form-input'
              type={this.props.type}
              value={this.props.value}
+             placeholder={this.props.placeholder}
              onChange={this.props.handler}
              name={this.props.name}
       />

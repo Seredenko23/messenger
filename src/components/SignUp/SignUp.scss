@@ -1,0 +1,14 @@
+.sign-up-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  .sign-up-form {
+    min-width: 400px;
+    .sing-up-label {
+      display: none;
+    }
+  }
+}
+
+

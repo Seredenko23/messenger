@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import Navigation from "./components/Navigation/Navigation";
 import { websocketMiddleware } from "./middleware/websocket";
 import './App.scss';
+import './style/variables.scss'
 
 const store = createStore(rootReducer, applyMiddleware(thunk, websocketMiddleware));
 
