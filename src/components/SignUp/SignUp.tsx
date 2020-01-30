@@ -5,6 +5,8 @@ import { connectWebsocket } from "../../redux/actions/websocket";
 import { connect } from "react-redux";
 
 import './SignUp.scss'
+import FormInput from "../FormInput/FormInput";
+import FormButton from "../FormButton/FormButton";
 
 interface Props {
   registerUser: (user) => void;
@@ -46,47 +48,52 @@ class SignUp extends Component<Props, State> {
         >
           <label className={'sing-up-label'}>
             First Name
-            <input type="text"
-                   className="sign-up-fields"
-                   name={'firstName'}
-                   onChange={this.changeHandle}
+            <FormInput type="text"
+                       name={'firstName'}
+                       placeholder={'First Name'}
+                       handler={this.changeHandle}
+                       value={this.state.firstname}
             />
           </label>
           <label className={'sing-up-label'}>
             Last Name
-            <input type="text"
-                   className="sign-up-fields"
-                   name={'lastName'}
-                   onChange={this.changeHandle}
+            <FormInput type="text"
+                       name={'lastName'}
+                       placeholder={'Last name'}
+                       handler={this.changeHandle}
+                       value={this.state.lastName}
             />
           </label>
           <label className={'sing-up-label'}>
             Login
-            <input type="text"
-                   className="sign-up-fields"
-                   name={'login'}
-                   onChange={this.changeHandle}
+            <FormInput type="text"
+                       name={'login'}
+                       placeholder={'Login'}
+                       handler={this.changeHandle}
+                       value={this.state.login}
             />
           </label>
           <label className={'sing-up-label'}>
             Email
-            <input type="text"
-                   className="sign-up-fields"
-                   name={'email'}
-                   onChange={this.changeHandle}
+            <FormInput type="text"
+                       name={'email'}
+                       placeholder={'Email'}
+                       handler={this.changeHandle}
+                       value={this.state.email}
             />
           </label>
           <label className={'sing-up-label'}>
             Password
-            <input type="password"
-                   className="sign-up-fields"
-                   name={'password'}
-                   onChange={this.changeHandle}
+            <FormInput type="password"
+                       name={'password'}
+                       placeholder={'Password'}
+                       handler={this.changeHandle}
+                       value={this.state.password}
             />
           </label>
-          <button type={'submit'}>
+          <FormButton type={'submit'}>
             Submit
-          </button>
+          </FormButton>
         </form>
       </div>
     );
