@@ -7,7 +7,6 @@ $textColor: #9A9AA8;
 .login {
   width: 100%;
   height: 100%;
-  background: $mainBgColor;
 }
 
 .wrapper {
@@ -22,13 +21,12 @@ $textColor: #9A9AA8;
 }
 
 .block-login {
-  height: 100vh;
   background-color: $secondaryBgColor;
   color: #9A9AA8;
-  /*position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(50% - 150px) !important;*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .login-form-wrapper {
 
