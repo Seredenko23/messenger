@@ -1,10 +1,13 @@
+@import '../../style/card';
+
 .sign-up-wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   .sign-up-form {
-    min-width: 400px;
+    display: flex;
+    flex-direction: column;
     .sing-up-label {
       display: none;
     }

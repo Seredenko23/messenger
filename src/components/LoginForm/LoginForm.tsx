@@ -43,12 +43,12 @@ class LoginForm extends Component<Props,State> {
     return (
     <div className='login'>
     <div className='wrapper'>
-      <div className='block-login'>
+      <div className='block-login card'>
       <div className='login-form-wrapper'>
           <form name='loginForm'
                 className='login-form'
           >
-            <label htmlFor=""
+            <label htmlFor="email"
                    className='label'
             >
               Email:
@@ -59,7 +59,7 @@ class LoginForm extends Component<Props,State> {
                        handler={this.changeHandle}
                        value={this.state.email}
             />
-            <label htmlFor=''
+            <label htmlFor='password'
                    className='label'
             >
               Password:

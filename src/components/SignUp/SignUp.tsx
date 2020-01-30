@@ -42,8 +42,9 @@ class SignUp extends Component<Props, State> {
 
   render() {
     return (
+
       <div className={'sign-up-wrapper'}>
-        <form className={'sign-up-form'}
+        <form className={'sign-up-form card'}
               onSubmit={this.onSubmit}
         >
           <label className={'sing-up-label'}>First Name</label>
