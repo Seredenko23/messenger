@@ -3,10 +3,10 @@ import { bindActionCreators } from "redux";
 import { registerUser } from "../../redux/actions/sign-up";
 import { connectWebsocket } from "../../redux/actions/websocket";
 import { connect } from "react-redux";
-
-import './SignUp.scss'
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
+
+import './SignUp.scss'
 
 interface Props {
   registerUser: (user) => void;
@@ -42,55 +42,45 @@ class SignUp extends Component<Props, State> {
 
   render() {
     return (
-      <div className={'sign-up-form'}>
+      <div className={'sign-up-wrapper'}>
         <form className={'sign-up-form'}
               onSubmit={this.onSubmit}
         >
-          <label className={'sing-up-label'}>
-            First Name
-            <FormInput type="text"
-                       name={'firstName'}
-                       placeholder={'First Name'}
-                       handler={this.changeHandle}
-                       value={this.state.firstname}
-            />
-          </label>
-          <label className={'sing-up-label'}>
-            Last Name
-            <FormInput type="text"
-                       name={'lastName'}
-                       placeholder={'Last name'}
-                       handler={this.changeHandle}
-                       value={this.state.lastName}
-            />
-          </label>
-          <label className={'sing-up-label'}>
-            Login
-            <FormInput type="text"
-                       name={'login'}
-                       placeholder={'Login'}
-                       handler={this.changeHandle}
-                       value={this.state.login}
-            />
-          </label>
-          <label className={'sing-up-label'}>
-            Email
-            <FormInput type="text"
-                       name={'email'}
-                       placeholder={'Email'}
-                       handler={this.changeHandle}
-                       value={this.state.email}
-            />
-          </label>
-          <label className={'sing-up-label'}>
-            Password
-            <FormInput type="password"
-                       name={'password'}
-                       placeholder={'Password'}
-                       handler={this.changeHandle}
-                       value={this.state.password}
-            />
-          </label>
+          <label className={'sing-up-label'}>First Name</label>
+          <FormInput type="text"
+                             name={'firstName'}
+                             placeholder={'First Name'}
+                             handler={this.changeHandle}
+                             value={this.state.firstname}
+          />
+          <label className={'sing-up-label'}>Last Name</label>
+          <FormInput type="text"
+                             name={'lastName'}
+                             placeholder={'Last name'}
+                             handler={this.changeHandle}
+                             value={this.state.lastName}
+          />
+          <label className={'sing-up-label'}>Login</label>
+          <FormInput type="text"
+                             name={'login'}
+                             placeholder={'Login'}
+                             handler={this.changeHandle}
+                             value={this.state.login}
+          />
+          <label className={'sing-up-label'}>Email</label>
+          <FormInput type="text"
+                             name={'email'}
+                             placeholder={'Email'}
+                             handler={this.changeHandle}
+                             value={this.state.email}
+          />
+          <label className={'sing-up-label'}>Password</label>
+          <FormInput type="password"
+                             name={'password'}
+                             placeholder={'Password'}
+                             handler={this.changeHandle}
+                             value={this.state.password}
+          />
           <FormButton type={'submit'}>
             Submit
           </FormButton>

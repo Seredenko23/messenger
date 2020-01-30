@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './FormInput.scss'
 
 interface Props {
   type: string;
