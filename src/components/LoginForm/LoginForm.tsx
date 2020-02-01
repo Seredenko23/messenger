@@ -70,8 +70,7 @@ class LoginForm extends Component<Props,State> {
                        handler={this.changeHandle}
                        value={this.state.password}
             />
-            <FormButton type={'submit'}
-            >
+            <FormButton type={'submit'}>
               Submit
             </FormButton>
             {isLoginPending && <div>Please wait</div>}

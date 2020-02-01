@@ -2,7 +2,7 @@
 
 .form-input {
   height: 50px;
-  border: none;
+  border: 1px solid $inputBgColor;
   border-radius: 25px;
   margin: 5px 0;
   padding: 0 25px;
@@ -10,4 +10,13 @@
   color: $textColor;
   outline: none;
   font-size: 14pt;
+}
+
+.err {
+  border: 1px solid red;
+}
+
+.error {
+  margin: 0 15px;
+  color: red;
 }
