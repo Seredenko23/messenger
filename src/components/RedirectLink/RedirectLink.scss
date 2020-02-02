@@ -1,0 +1,10 @@
+@import '../../style/variables';
+
+.redirect-link {
+  color: $textColor;
+  cursor: pointer;
+}
+
+.redirect-link:hover {
+  color: #A190A7;
+}

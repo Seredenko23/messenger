@@ -8,6 +8,7 @@ import FormButton from "../FormButton/FormButton";
 import {email, minLength6, required} from "../../service/validators";
 
 import './SignUp.scss'
+import RedirectLink from "../RedirectLink/RedirectLink";
 
 interface Props {
   registerUser: (user) => void;
@@ -47,6 +48,9 @@ class SignUp extends Component<Props, State> {
         <form className={'sign-up-form card'}
               onSubmit={this.onSubmit}
         >
+          <div className={'header-wrapper'}>
+            <h1>Sign up</h1>
+          </div>
           <label className={'sing-up-label'}>First Name</label>
           <FormInput type="text"
                      name={'firstName'}
@@ -90,6 +94,9 @@ class SignUp extends Component<Props, State> {
           <FormButton type={'submit'}>
             Submit
           </FormButton>
+          <RedirectLink link={'log-in'}>
+            Redirect
+          </RedirectLink>
         </form>
       </div>
     );
