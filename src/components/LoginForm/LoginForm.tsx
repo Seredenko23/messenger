@@ -5,11 +5,11 @@ import { bindActionCreators, Dispatch } from "redux";
 import './LoginForm.scss'
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
+import {User} from "../../models/user";
+
 interface Props {
-  login: (email: string, password: string) => (dispatch: Dispatch) => void;
-  isLoginPending: boolean;
-  isLoginSuccess: boolean;
-  loginError: Error | null;
+  login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
+  user: User;
 }
 
 interface State {
@@ -28,8 +28,8 @@ class LoginForm extends Component<Props,State> {
 
   onSubmit = (e) => {
     e.preventDefault();
-    let {email, password} = this.state;
-    this.props.login(email, password);
+    // @ts-ignore
+    this.props.login(this.state);
   };
 
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -39,7 +39,6 @@ class LoginForm extends Component<Props,State> {
   };
 
   render() {
-    let {isLoginPending, isLoginSuccess, loginError} = this.props;
     return (
     <div className='login'>
     <div className='wrapper'>
@@ -47,6 +46,7 @@ class LoginForm extends Component<Props,State> {
       <div className='login-form-wrapper'>
           <form name='loginForm'
                 className='login-form'
+                onSubmit={this.onSubmit}
           >
             <label htmlFor="email"
                    className='label'
@@ -73,9 +73,6 @@ class LoginForm extends Component<Props,State> {
             <FormButton type={'submit'}>
               Submit
             </FormButton>
-            {isLoginPending && <div>Please wait</div>}
-            {isLoginSuccess && <div>Welcome back!</div>}
-            {loginError && <div>{loginError.message}</div>}
           </form>
         </div>
       </div>
@@ -87,9 +84,8 @@ class LoginForm extends Component<Props,State> {
 
 const mapStateToProps = (state) => {
   return {
-    isLoginPending: state.loginReducer.isLoginPending,
-    isLoginSuccess: state.loginReducer.isLoginSuccess,
-    loginError: state.loginReducer.loginError
+    isPending: state.loginReducer.isPending,
+    user: state.loginReducer.user,
   };
 };
 

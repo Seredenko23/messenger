@@ -1,5 +1,9 @@
+import {User} from "../../../models/user";
+
 export interface LoginState {
-  isLoginPending: boolean;
-  isLoginSuccess: boolean;
-  loginError: Error | null;
+  isPending: boolean;
+  user: User | {};
+  error: Error | string;
+  access_token: string;
+  refresh_token: string;
 }

@@ -6,12 +6,13 @@ import {
 
 import { LoginState } from "./types/LoginState";
 import { Reducer } from "redux";
-import { LoginActions } from "../actions/types/LoginActions";
 
 const initialState: LoginState = {
-  isLoginPending: false,
-  isLoginSuccess: false,
-  loginError: null,
+  isPending: false,
+  user: {},
+  error: '',
+  access_token: '',
+  refresh_token: '',
 };
 
 export const loginReducer: Reducer<LoginState> = (state = initialState, action) => {
@@ -19,17 +20,19 @@ export const loginReducer: Reducer<LoginState> = (state = initialState, action) 
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLoginSuccess: action.payload
+        user: action.payload.user,
+        isPending: action.payload.isPending
       };
     case LOGIN_PENDING:
       return {
         ...state,
-        isLoginPending: action.payload
+        isPending: action.payload
       };
     case LOGIN_ERROR:
       return {
         ...state,
-        loginError: action.payload.error
+        isPending: action.payload.isPending,
+        error: action.payload.err
       };
     default:
       return state;

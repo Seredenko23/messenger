@@ -1,5 +1,6 @@
 import {User} from "../../models/user";
 import {Action, ActionCreator, Dispatch} from "redux";
+import {regUser} from "../../service/signUp";
 
 export const REGISTER_PENDING: string = 'ACTION_REGISTER_PENDING';
 export const REGISTER_SUCCESS: string = 'ACTION_REGISTER_SUCCESS';
@@ -31,9 +32,12 @@ export const registerUser: (user: User)
   => void = (user: User) => {
   return (dispatch: Dispatch) => {
     dispatch(register());
-    setTimeout(() => {
-      console.log(user);
-      dispatch(registerSuccess())
-    }, 5000)
+    regUser(user)
+      .then(() => {
+        dispatch(registerSuccess());
+    })
+      .catch(err => {
+        dispatch(registerError());
+    })
   }
 };

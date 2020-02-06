@@ -1,11 +1,15 @@
 import {BASE_URL} from "../config/config";
-import {UserSignUp} from "../models/userSignUp";
+import {User} from "../models/user";
 
-// TODO create signUp user model
-
-export const regUser: (userData) => Promise<UserSignUp[]> = async (userData) => {
-  let response: Response = await fetch(BASE_URL);
-  if(response.status >= 400 || response.status <= 600) throw Error('Bad response');
-  let formattedResponse: [] = await response.json();
-  return formattedResponse;
+export const regUser: (userData: User) => Promise<User> = async (userData) => {
+  let response: Response = await fetch(`${BASE_URL}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
+  if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
+  console.log(response.json());
+  return await response.json()
 };

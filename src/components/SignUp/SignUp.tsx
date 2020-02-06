@@ -6,9 +6,8 @@ import { connect } from "react-redux";
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
 import {email, minLength6, required} from "../../service/validators";
-
-import './SignUp.scss'
 import RedirectLink from "../RedirectLink/RedirectLink";
+import './SignUp.scss'
 
 interface Props {
   registerUser: (user) => void;
@@ -25,7 +24,7 @@ class SignUp extends Component<Props, State> {
     this.state = {
       firstName: '',
       lastName: '',
-      login: '',
+      username: '',
       email: '',
       password: '',
     }
@@ -69,10 +68,10 @@ class SignUp extends Component<Props, State> {
           />
           <label className={'sing-up-label'}>Login</label>
           <FormInput type="text"
-                     name={'login'}
-                     placeholder={'Login'}
+                     name={'username'}
+                     placeholder={'Username'}
                      handler={this.changeHandle}
-                     value={this.state.login}
+                     value={this.state.username}
                      validate={[required, minLength6]}
           />
           <label className={'sing-up-label'}>Email</label>

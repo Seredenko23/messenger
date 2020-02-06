@@ -1,20 +1,25 @@
 import {Action, ActionCreator, Dispatch} from "redux";
+import {logIn} from "../../service/logIn";
+import {User} from "../../models/user";
 
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
-export const setLoginPending: ActionCreator<Action> = (isLoginPending: boolean) => {
+export const setLoginPending: ActionCreator<Action> = () => {
   return {
     type: LOGIN_PENDING,
-    payload: isLoginPending
+    payload: true
   };
 };
 
-export const setLoginSuccess: ActionCreator<Action> = (isLoginSuccess: boolean) => {
+export const setLoginSuccess: ActionCreator<Action> = (user: User) => {
   return {
     type: LOGIN_SUCCESS,
-    payload: isLoginSuccess
+    payload: {
+      user: user,
+      isPending: false
+    }
   };
 };
 
@@ -22,37 +27,24 @@ export const setLoginError: ActionCreator<Action> = (loginError: string) => {
   return {
     type: LOGIN_ERROR,
     payload: {
+      isPending: false,
       error: loginError
     }
   };
 };
 
-export const login: (email: string, password: string)
+export const login: (user)
   => (dispatch: Dispatch)
-  => void = (email: string, password: string) => {
+  => void = (user) => {
   return (dispatch: Dispatch) => {
-    dispatch(setLoginPending(true));
-    sendLoginRequest(email, password)
+    dispatch(setLoginPending());
+    logIn(user)
       .then(success => {
-        dispatch(setLoginPending(false));
-        dispatch(setLoginSuccess(true));
+        console.log(success)
+        dispatch(setLoginSuccess(success));
       })
       .catch(err => {
-        dispatch(setLoginPending(false));
         dispatch(setLoginError(err));
       });
   };
-};
-
-const sendLoginRequest: (email: string, password: string) => Promise<boolean>
-  = (email: string, password: string) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === 'admin@example.com' && password === 'admin') {
-        return resolve(true);
-      } else {
-        return reject(new Error('Invalid email or password'));
-      }
-    },1000);
-  });
 };
