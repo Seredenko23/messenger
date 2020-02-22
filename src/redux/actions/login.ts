@@ -1,6 +1,7 @@
 import {Action, ActionCreator, Dispatch} from "redux";
 import {logIn} from "../../service/logIn";
 import {User} from "../../models/user";
+import {DTO} from "../../service/model/dto";
 
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -13,12 +14,14 @@ export const setLoginPending: ActionCreator<Action> = () => {
   };
 };
 
-export const setLoginSuccess: ActionCreator<Action> = (user: User) => {
+export const setLoginSuccess: ActionCreator<Action> = (data: DTO<User>) => {
   return {
     type: LOGIN_SUCCESS,
     payload: {
-      user: user,
-      isPending: false
+      user: data.response,
+      isPending: false,
+      accessToken: data.tokens.accessToken,
+      refreshToken: data.tokens.refreshToken
     }
   };
 };

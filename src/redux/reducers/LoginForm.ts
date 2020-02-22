@@ -11,8 +11,8 @@ const initialState: LoginState = {
   isPending: false,
   user: {},
   error: '',
-  access_token: '',
-  refresh_token: '',
+  accessToken: '',
+  refreshToken: '',
 };
 
 export const loginReducer: Reducer<LoginState> = (state = initialState, action) => {
@@ -21,7 +21,9 @@ export const loginReducer: Reducer<LoginState> = (state = initialState, action) 
       return {
         ...state,
         user: action.payload.user,
-        isPending: action.payload.isPending
+        isPending: action.payload.isPending,
+        accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken
       };
     case LOGIN_PENDING:
       return {

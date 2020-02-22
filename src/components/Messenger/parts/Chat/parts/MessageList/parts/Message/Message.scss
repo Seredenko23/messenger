@@ -1,0 +1,9 @@
+@import '../../../../../../../../style/variables';
+
+.message {
+  display: inline-block;
+  padding: 12px 16px;
+  background-color: $messageColor;
+  border-radius: 3px;
+  color: white;
+}
