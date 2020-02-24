@@ -4,7 +4,7 @@ import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
 import Navigation from "./components/Navigation/Navigation";
-import { websocketMiddleware } from "./redux/middleware/websocket";
+import { websocketMiddleware } from "./redux/middleware/socket";
 import './App.scss';
 import './style/variables.scss'
 

@@ -2,7 +2,7 @@ import { BASE_URL } from "../config/config";
 import { Thread } from "../models/Thread";
 
 export async function getThreadByUserId(userId: string): Promise<Thread[]> {
-  let response: Response = await fetch(`${BASE_URL}/api/thread/${userId}`);
+  let response: Response = await fetch(`${BASE_URL}/thread/${userId}`);
 
   if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
 
@@ -10,7 +10,7 @@ export async function getThreadByUserId(userId: string): Promise<Thread[]> {
 }
 
 export async function createThread(currentUserId: string, userId: string): Promise<Thread> {
-  let response: Response = await fetch(`${BASE_URL}/api/thread`, {
+  let response: Response = await fetch(`${BASE_URL}/thread`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function createThread(currentUserId: string, userId: string): Promi
 }
 
 export async function deleteThread(threadId: string): Promise<void> {
-  let response: Response = await fetch(`${BASE_URL}/api/thread/${threadId}`, {
+  let response: Response = await fetch(`${BASE_URL}/thread/${threadId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
