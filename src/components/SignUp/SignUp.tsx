@@ -1,7 +1,6 @@
 import React, {Component, FormEvent} from 'react';
 import { bindActionCreators } from "redux";
 import { registerUser } from "../../redux/actions/sign-up";
-import { connectWebsocket } from "../../redux/actions/socket";
 import { connect } from "react-redux";
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
@@ -11,7 +10,6 @@ import './SignUp.scss'
 
 interface Props {
   registerUser: (user) => void;
-  connectWebsocket: (url: string) => void;
 }
 
 interface State {
@@ -105,7 +103,6 @@ class SignUp extends Component<Props, State> {
 const mapDispatchToProps = (dispatch) => {
   return {
     registerUser: bindActionCreators(registerUser, dispatch),
-    connectWebsocket: bindActionCreators(connectWebsocket, dispatch),
   }
 };
 

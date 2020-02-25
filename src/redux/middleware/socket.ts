@@ -1,11 +1,9 @@
 import {Middleware} from "redux";
 import io from "socket.io-client"
-import Socket = SocketIOClient.Socket;
 
-export const socketMiddleware: Middleware = () => {
-  let socket: Socket = io();
+let socket: any = io('http://localhost');
 
-  return store => next => action => {
+export const socketMiddleware: Middleware = store => next => action => {
     if (typeof action === 'function') return next(action);
 
     const {
@@ -26,11 +24,10 @@ export const socketMiddleware: Middleware = () => {
 
     if (leave) socket.off(event);
 
-    let handleEvent = handle;
+    let handleEvent: string | Function = handle;
     if (typeof handleEvent === 'string') {
       // @ts-ignore
       handleEvent = result => store.dispatch({ type: handle, payload: result, ...rest });
     }
     return socket.on(event, handleEvent);
   };
-};

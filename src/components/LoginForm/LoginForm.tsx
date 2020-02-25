@@ -5,9 +5,11 @@ import { bindActionCreators, Dispatch } from "redux";
 import './LoginForm.scss'
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
+import { withRouter } from "react-router";
 
 interface Props {
   login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
+  history: string[];
 }
 
 interface State {
@@ -24,10 +26,11 @@ class LoginForm extends Component<Props,State> {
     };
   }
 
-  onSubmit = (e) => {
+  onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // @ts-ignore
     this.props.login(this.state);
+    this.props.history.push('/chat')
   };
 
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -92,4 +95,4 @@ const  mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter<any, any>(LoginForm));

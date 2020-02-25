@@ -4,11 +4,11 @@ import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
 import Navigation from "./components/Navigation/Navigation";
-import { websocketMiddleware } from "./redux/middleware/socket";
+import { socketMiddleware } from "./redux/middleware/socket";
 import './App.scss';
 import './style/variables.scss'
 
-const store = createStore(rootReducer, applyMiddleware(thunk, websocketMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunk, socketMiddleware));
 
 const App: React.FC = () => {
   return (
