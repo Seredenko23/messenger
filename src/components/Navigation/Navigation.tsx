@@ -4,6 +4,7 @@ import SignUp from "../SignUp/SignUp";
 import LoginForm from "../LoginForm/LoginForm";
 
 import './Navigation.scss';
+import Messenger from "../Messenger/Messenger";
 
 class Navigation extends Component {
   render() {
@@ -19,8 +20,11 @@ class Navigation extends Component {
           <Route path={'/log-in'}>
             <LoginForm/>
           </Route>
+          <Route path={'/chat'}>
+            <Messenger/>
+          </Route>
           <Route path={'/'}>
-            <Redirect to={'log-in'}/>
+            <Redirect to={'chat'}/>{/*Вернуть в log-in*/}
           </Route>
         </Switch>
       </BrowserRouter>

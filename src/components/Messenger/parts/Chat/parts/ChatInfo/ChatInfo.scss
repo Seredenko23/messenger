@@ -1,0 +1,12 @@
+@import '../../../../../../style/variables';
+
+.chat-info {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  height: 64px;
+  background-color: $buttonColor;
+  .user {
+    font-size: 12pt;
+  }
+}

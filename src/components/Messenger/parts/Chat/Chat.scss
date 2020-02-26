@@ -1,0 +1,8 @@
+@import '../../../../style/variables';
+
+.chat {
+  height: 100%;
+  width: 70%;
+  background-color: $chatBackground;
+  color: $messageTextColor;
+}

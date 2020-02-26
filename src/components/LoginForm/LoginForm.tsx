@@ -5,11 +5,9 @@ import { bindActionCreators, Dispatch } from "redux";
 import './LoginForm.scss'
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
-import {User} from "../../models/user";
 
 interface Props {
   login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
-  user: User;
 }
 
 interface State {
@@ -85,7 +83,6 @@ class LoginForm extends Component<Props,State> {
 const mapStateToProps = (state) => {
   return {
     isPending: state.loginReducer.isPending,
-    user: state.loginReducer.user,
   };
 };
 

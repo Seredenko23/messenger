@@ -1,0 +1,30 @@
+@import '../../../../../../style/variables';
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  height: 64px;
+  width: 100%;
+  background-color: $secondaryBgColor;
+  .message-input {
+    height: 22px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0 30px;
+    font-size: 12pt;
+    resize: none;
+  }
+  .chat-btn {
+    height: 100%;
+    width: 62px;
+    outline: none;
+    border: none;
+    background-color: $secondaryBgColor;
+    padding: 0;
+  }
+}
+

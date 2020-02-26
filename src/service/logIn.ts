@@ -1,7 +1,8 @@
 import { User } from "../models/user";
-import {BASE_URL} from "../config/config";
+import { BASE_URL } from "../config/config";
+import { DTO } from "./model/dto";
 
-export async function logIn(user: User): Promise<User> {
+export async function logIn(user: User): Promise<DTO<User>> {
   let response: Response = await fetch(`${BASE_URL}/login`, {
     method: 'POST',
     headers: {
@@ -9,7 +10,13 @@ export async function logIn(user: User): Promise<User> {
     },
     body: JSON.stringify(user),
   });
-  console.log()
   if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
-  return response.json()
+  const tokens = {
+    accessToken: response.headers.get('access-token'),
+    refreshToken: response.headers.get('refresh-token')
+  };
+  return {
+    tokens: tokens,
+    response: await response.json()
+  }
 }
