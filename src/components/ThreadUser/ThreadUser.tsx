@@ -4,7 +4,7 @@ class ThreadUser extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className='thread-user__wrapper'>
                     <div className='thread-user'>
                         <img src={"user.png"} alt="" width='80px' height='80px' className='user-img'/>
                         <div className='thread-user__name-message'>
