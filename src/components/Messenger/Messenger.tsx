@@ -3,6 +3,7 @@ import Chat from "./parts/Chat/Chat";
 import './Messenger.scss'
 
 class Messenger extends Component {
+
   render() {
     return (
       <div className={'messenger-wrapper'}>

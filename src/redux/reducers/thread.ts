@@ -10,6 +10,7 @@ import { Reducer } from "redux";
 
 const initialState: ThreadState = {
   isPending: false,
+  threadId: "5e524430afba792298bcf14e",
   threads: []
 };
 

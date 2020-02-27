@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { signUp } from "./sign-up";
 import {loginReducer} from "./LoginForm";
-import { websocket } from "./websocket";
+import { Socket } from "./socket";
 import { threadReducer } from "./thread";
 
 const rootReducer = combineReducers({
   signUp,
-  websocket,
+  Socket,
   loginReducer,
   threadReducer,
 });
