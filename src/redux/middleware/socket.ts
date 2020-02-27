@@ -26,7 +26,6 @@ export const socketMiddleware: Middleware = store => next => action => {
 
     let handleEvent: string | Function = handle;
     if (typeof handleEvent === 'string') {
-      // @ts-ignore
       handleEvent = result => store.dispatch({ type: handle, payload: result, ...rest });
     }
     return socket.on(event, handleEvent);

@@ -47,7 +47,6 @@ export const getThreads: (userId: string)
   => (dispatch: Dispatch)
   => void = (userId: string) => {
   return (dispatch: Dispatch) => {
-    console.log('asdwe');
     dispatch(threadPending());
     getThreadByUserId(userId)
       .then(threads => {

@@ -13,4 +13,9 @@ export interface ISocketMessage {
   payload: Message
 }
 
-export type SocketActions = ISocketMessage;
+export interface IAllMessage {
+  type: string;
+  payload: Message[]
+}
+
+export type SocketActions = ISocketMessage | IAllMessage;

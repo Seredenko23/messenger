@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Component} from 'react';
+import React, { Component } from 'react';
 import './ChatInput.scss'
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
