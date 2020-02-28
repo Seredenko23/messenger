@@ -5,19 +5,17 @@ import { Message as MessageType}  from "../../../../../../models/messages"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket";
+import {User} from "../../../../../../models/user";
 
 interface Props {
   threadId: string;
   messages: MessageType[];
   getAllMessage: (threadId: string) => void;
   subscribeMessage: () => void;
+  user: User;
 }
 
 class MessageList extends Component<Props> {
-
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount(): void {
     this.props.subscribeMessage();
@@ -25,11 +23,17 @@ class MessageList extends Component<Props> {
   }
 
   render() {
+    const { user, messages } = this.props
     return (
       <div className={'message-list'}>
-        { this.props.messages.map((message: MessageType) => {
+        { messages.map((message: MessageType) => {
+          let type = user._id === message.user._id ? 'my' : '';
+          let fullName = `${message.user.firstName} ${message.user.lastName}`;
           return (
-            <Message key={message._id}>
+            <Message key={message._id}
+                     type={type}
+                     name={fullName}
+            >
               {message.messageBody}
             </Message>
           )
@@ -42,7 +46,8 @@ class MessageList extends Component<Props> {
 const mapStateToProps = (state) => {
   return {
     messages: state.Socket.messages,
-    threadId: state.threadReducer.threadId
+    threadId: state.threadReducer.threadId,
+    user: state.loginReducer.user
   }
 };
 
