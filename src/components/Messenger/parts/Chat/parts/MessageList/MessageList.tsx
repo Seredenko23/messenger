@@ -4,7 +4,7 @@ import Message from "./parts/Message/Message";
 import { Message as MessageType}  from "../../../../../../models/messages"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket";
+import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
 
 interface Props {
