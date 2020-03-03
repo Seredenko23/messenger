@@ -71,12 +71,15 @@ class ChatInput extends Component<Props, State> {
     })
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const message = {
+    const message: Message = {
       threadId: this.props.threadId,
       user: this.props.user,
-      messageBody: this.state.messageBody
+      messageBody: {
+        body: this.state.messageBody,
+        type: 'text'
+      }
     };
     this.props.sendMessage(message)
   };

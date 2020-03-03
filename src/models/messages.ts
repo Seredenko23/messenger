@@ -4,5 +4,8 @@ export interface Message {
   _id?: string;
   threadId: string;
   user: User;
-  messageBody: string;
+  messageBody: {
+    body: string | Blob;
+    type: string;
+  };
 }
