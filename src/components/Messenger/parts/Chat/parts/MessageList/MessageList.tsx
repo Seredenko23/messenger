@@ -33,9 +33,8 @@ class MessageList extends Component<Props> {
             <Message key={message._id}
                      type={type}
                      name={fullName}
-            >
-              {message.messageBody}
-            </Message>
+                     messageBody={message.messageBody}
+            />
           )
         })}
       </div>

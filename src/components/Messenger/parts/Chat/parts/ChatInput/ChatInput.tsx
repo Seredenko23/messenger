@@ -16,7 +16,6 @@ interface Props {
 interface State {
   messageBody: string;
   isRecording: boolean,
-  blobURL: string,
   isBlocked: boolean,
 }
 
@@ -27,7 +26,6 @@ class ChatInput extends Component<Props, State> {
     this.state = {
       messageBody: '',
       isRecording: false,
-      blobURL: '',
       isBlocked: false,
     }
   }
@@ -52,16 +50,24 @@ class ChatInput extends Component<Props, State> {
         .then(() => {
           this.setState({ isRecording: true });
         })
-        .catch((e) => console.error(e));
+        .catch((e: Error) => console.error(e));
     } else {
       this.Recorder.stop()
         .getMp3()
-        .then(([buffer, blob]) => {
-          console.log(blob);
-          const blobURL = URL.createObjectURL(blob);
-          this.setState({ blobURL, isRecording: false });
+        .then(async ([buffer ,blob]) => {
+          const message: Message = {
+            threadId: this.props.threadId,
+            user: this.props.user,
+            messageBody: {
+              body: blob,
+              type: 'audio'
+            }
+          };
+          console.log(message);
+          this.props.sendMessage(message);
+          this.setState({ isRecording: false });
         })
-        .catch((e) => console.log(e));
+        .catch((e: Error) => console.log(e));
     }
   };
 
