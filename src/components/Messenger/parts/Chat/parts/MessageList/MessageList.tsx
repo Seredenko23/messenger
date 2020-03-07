@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
+import AudioPlayer from "./parts/AudioPlayer/AudioPlayer";
 
 interface Props {
   threadId: string;

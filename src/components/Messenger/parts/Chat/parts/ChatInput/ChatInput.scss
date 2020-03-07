@@ -25,6 +25,14 @@
     border: none;
     background-color: $secondaryBgColor;
     padding: 0;
+    transition: 0.2s ease;
+  }
+  .unactive:hover {
+    background-color: $messageColor;
+  }
+  .active {
+    background: $buttonColor;
+    color: white;
   }
 }
 

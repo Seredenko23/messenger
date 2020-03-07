@@ -16,3 +16,7 @@ export const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 
   return new Blob(byteArrays as BlobPart[], {type: contentType});
 }
+
+export const calculateTime = (totalDuration, currentTime) => {
+  return (100*currentTime)/totalDuration
+}

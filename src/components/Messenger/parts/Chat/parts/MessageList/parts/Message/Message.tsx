@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Message.scss'
 import {MessageBody} from "../../../../../../../../models/MessageBody";
 import {b64toBlob} from "../../../../../../../../service/utilities";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 interface Props {
   name: string;
@@ -20,9 +21,7 @@ class Message extends Component<Props> {
       case 'audio':
         let blob = b64toBlob(messageBody.body, 'audio/mp3')
         return (
-          <audio controls>
-            <source src={URL.createObjectURL(blob)} type="audio/mp3"/>
-          </audio>
+          <AudioPlayer url={URL.createObjectURL(blob)}/>
         )
     }
   };

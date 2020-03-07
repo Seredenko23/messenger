@@ -1,0 +1,36 @@
+@import "../../../../../../../../style/variables";
+
+.audio-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .bar-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 9px;
+    .bar {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    .full-bar {
+      background: $chatBackground;
+      overflow: hidden;
+    }
+    .current-bar {
+      z-index: 3;
+      background: $buttonColor;
+    }
+  }
+  .play {
+    border: none;
+    outline: none;
+    color: white;
+    background-color: $buttonColor;
+    padding: 3px;
+    margin-right: 5px;
+  }
+}
+
+

@@ -104,7 +104,7 @@ class ChatInput extends Component<Props, State> {
               =>
             </button>
           ) : (
-            <button className={'chat-btn'}
+            <button className={`chat-btn ${this.state.isRecording ? 'active' : 'unactive'}`}
                     type={'button'}
                     onClick={this.record}
             >
