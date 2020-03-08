@@ -20,3 +20,8 @@ export const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 export const calculateTime = (totalDuration, currentTime) => {
   return (100*currentTime)/totalDuration
 }
+
+function validateYoutubeUrl(url) {
+  let pattern = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+  return pattern.test(url)
+}
