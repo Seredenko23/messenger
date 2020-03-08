@@ -17,11 +17,15 @@ export const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
   return new Blob(byteArrays as BlobPart[], {type: contentType});
 }
 
-export const calculateTime = (totalDuration, currentTime) => {
+export const calculateTime = (totalDuration: number, currentTime: number): number => {
   return (100*currentTime)/totalDuration
 }
 
-function validateYoutubeUrl(url) {
+export const validateYoutubeUrl = (url: string): boolean => {
   let pattern = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
   return pattern.test(url)
+}
+
+export const getYoutubeUrlId = (url) => {
+  return url.split('v=')[1].split('&')[0]
 }

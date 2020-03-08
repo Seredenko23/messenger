@@ -3,6 +3,7 @@ import './Thread.scss'
 import ThreadList from "../ThreadList/ThreadList";
 import ThreadUser from "../ThreadUser/ThreadUser";
 import ThreadOut from "../ThreadOut/ThreadOut";
+
 class Thread extends Component {
     render() {
         return (
