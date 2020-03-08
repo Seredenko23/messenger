@@ -121,7 +121,7 @@ class ChatInput extends Component<Props, State> {
 const mapStateToProps = (state) => {
   return {
     threadId: state.threadReducer.threadId,
-    user: state.loginReducer.user
+    user: state.userReducer.user
   }
 };
 

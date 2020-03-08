@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
   return {
     messages: state.Socket.messages,
     threadId: state.threadReducer.threadId,
-    user: state.loginReducer.user
+    user: state.userReducer.user
   }
 };
 
