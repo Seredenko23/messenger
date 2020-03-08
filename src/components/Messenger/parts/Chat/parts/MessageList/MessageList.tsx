@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
-import AudioPlayer from "./parts/AudioPlayer/AudioPlayer";
 
 interface Props {
   threadId: string;
@@ -28,6 +27,7 @@ class MessageList extends Component<Props> {
     return (
       <div className={'message-list'}>
         { messages.map((message: MessageType) => {
+          console.log(message.createdAt)
           let type = user._id === message.user._id ? 'my' : '';
           let fullName = `${message.user.firstName} ${message.user.lastName}`;
           return (
@@ -35,6 +35,7 @@ class MessageList extends Component<Props> {
                      type={type}
                      name={fullName}
                      messageBody={message.messageBody}
+                     createdAt={message.createdAt as string}
             />
           )
         })}

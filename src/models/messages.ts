@@ -6,4 +6,5 @@ export interface Message {
   threadId: string;
   user: User;
   messageBody: MessageBody;
+  createdAt?: string;
 }

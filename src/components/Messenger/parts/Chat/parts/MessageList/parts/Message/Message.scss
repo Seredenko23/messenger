@@ -3,17 +3,19 @@
 .message-wrapper {
   display: flex;
   width: 100%;
-}
-
-.message {
-  margin: 5px 0;
-  display: inline-block;
-  padding: 12px 16px;
-  background-color: $messageColor;
-  border-radius: 3px;
-  color: white;
-}
-
-.my {
-  justify-content: flex-end;
+  &.my {
+    justify-content: flex-end;
+    .message {
+      background-color: $messageColor;
+      color: white;
+    }
+  }
+  .message {
+    margin: 5px 0;
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: $secondaryBgColor;
+    border-radius: 3px;
+    color: $textColor;
+  }
 }
