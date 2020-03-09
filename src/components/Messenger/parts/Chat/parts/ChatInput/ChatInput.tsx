@@ -6,7 +6,7 @@ import { sendMessage } from "../../../../../../redux/actions/socket";
 import { User } from "../../../../../../models/user";
 import { Message } from "../../../../../../models/messages";
 import MicRecorder from "mic-recorder-to-mp3"
-import { validateYoutubeUrl } from "../../../../../../service/utilities";
+import {getType} from "../../../../../../service/utilities";
 
 interface Props {
   threadId: string;
@@ -85,7 +85,7 @@ class ChatInput extends Component<Props, State> {
       user: this.props.user,
       messageBody: {
         body: this.state.messageBody,
-        type: validateYoutubeUrl(this.state.messageBody) ? 'youtube' : 'text'
+        type: getType(this.state.messageBody)
       }
     };
     this.props.sendMessage(message)

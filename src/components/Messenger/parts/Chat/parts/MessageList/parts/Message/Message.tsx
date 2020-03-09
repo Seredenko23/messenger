@@ -30,9 +30,17 @@ class Message extends Component<Props> {
       case 'youtube':
         return (
           <Youtube
-            videoId={getYoutubeUrlId(this.props.messageBody.body)}
+            videoId={getYoutubeUrlId(this.props.messageBody.body as string)}
             opts={youtubeOpt}
           />
+        )
+      case 'image':
+        return (
+          <a href={this.props.messageBody.body as string}>
+            <img alt={this.props.messageBody.body as string} width={500}
+                 src={this.props.messageBody.body as string}
+            />
+          </a>
         )
     }
   };

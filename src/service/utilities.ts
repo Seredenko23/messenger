@@ -21,11 +21,35 @@ export const calculateTime = (totalDuration: number, currentTime: number): numbe
   return (100*currentTime)/totalDuration
 }
 
-export const validateYoutubeUrl = (url: string): boolean => {
-  let pattern = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+
+export const getYoutubeUrlId = (url: string): string => {
+  return url.split('v=')[1].split('&')[0]
+}
+
+const validateImageUrl = (url: string): boolean => {
+  const pattern = /(http(s?):)([/|.|\w|\s|*-])*\.(?:jpg|gif|png|jpeg)/;
+  return pattern.test(url);
+}
+
+const validateUrl = (url: string): boolean => {
+  const pattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
   return pattern.test(url)
 }
 
-export const getYoutubeUrlId = (url) => {
-  return url.split('v=')[1].split('&')[0]
+const validateYoutubeUrl = (url: string): boolean => {
+  const pattern = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+  return pattern.test(url)
+}
+
+export const getType = (content: string): string => {
+  debugger
+  if(validateYoutubeUrl(content)) {
+    return 'youtube'
+  } else if(validateImageUrl(content)) {
+    return 'image'
+  } else if(validateUrl(content)){
+    return 'url'
+  } else {
+    return 'text'
+  }
 }
