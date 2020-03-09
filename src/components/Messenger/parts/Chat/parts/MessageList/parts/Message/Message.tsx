@@ -6,6 +6,7 @@ import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Youtube from "react-youtube"
 import moment from 'moment'
 import {youtubeOpt} from "../../../../../../../../config/config";
+import LinkPreview from "../LinkPreview/LinkPreview";
 
 interface Props {
   name: string;
@@ -41,6 +42,10 @@ class Message extends Component<Props> {
                  src={this.props.messageBody.body as string}
             />
           </a>
+        )
+      case 'url':
+        return (
+          <LinkPreview url={this.props.messageBody.body as string} />
         )
     }
   };
