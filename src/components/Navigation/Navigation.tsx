@@ -5,6 +5,7 @@ import LoginForm from "../LoginForm/LoginForm";
 
 import './Navigation.scss';
 import Messenger from "../Messenger/Messenger";
+import ThreadListInbox from "../ThreadListInbox/ThreadListInbox";
 
 class Navigation extends Component {
   render() {
@@ -21,10 +22,11 @@ class Navigation extends Component {
             <LoginForm/>
           </Route>
           <Route path={'/chat'}>
+            <ThreadListInbox/>
             <Messenger/>
           </Route>
           <Route path={'/'}>
-            <Redirect to={'chat'}/>{/*Вернуть в log-in*/}
+            <Redirect to={'log-in'}/>{/*Вернуть в log-in*/}
           </Route>
         </Switch>
       </BrowserRouter>

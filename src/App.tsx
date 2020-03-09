@@ -15,8 +15,9 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <div className="App">
-        {/*<Navigation/>*/}
-        <Thread/>
+
+        {/*<Thread/>*/}
+          <Navigation/>
       </div>
     </Provider>
   );
