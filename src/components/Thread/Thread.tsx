@@ -10,8 +10,7 @@ class Thread extends Component {
             <div className='thread'>
                 <ThreadList/>
                 <div className='thread-user-message__list'>
-                    <ThreadListInbox/>
-                    {/*<ThreadUser/>
+                    {/*<ThreadListInbox/>*/}
                     <ThreadUser/>
                     <ThreadUser/>
                     <ThreadUser/>
@@ -20,7 +19,8 @@ class Thread extends Component {
                     <ThreadUser/>
                     <ThreadUser/>
                     <ThreadUser/>
-                    <ThreadUser/>*/}
+                    <ThreadUser/>
+                    <ThreadUser/>
                 </div>
              <ThreadOut/>
             </div>

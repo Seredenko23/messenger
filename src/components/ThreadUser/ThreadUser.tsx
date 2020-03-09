@@ -17,7 +17,7 @@ class ThreadUser extends Component<any,any> {
                             <div className='thread-user__name'>
                                 {
                                     this.props.user._id === thread.users[0]._id ?
-                                        thread.users[1].name : thread.users[0].name
+                                        thread.users[1].firstName + thread.users[1].lastName : thread.users[0].firstName + thread.users[0].lastName
                                 }
                             </div>
                             <div className='thread-user__message'>
