@@ -15,10 +15,13 @@ class ThreadUser extends Component<any,any> {
                         <img src={"user.png"} alt="" width='80px' height='80px' className='user-img'/>
                         <div className='thread-user__name-message'>
                             <div className='thread-user__name'>
-                                Herbest Ferguson
+                                {
+                                    this.props.user._id === thread.users[0]._id ?
+                                        thread.users[1].name : thread.users[0].name
+                                }
                             </div>
                             <div className='thread-user__message'>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                {!!thread.message ? thread.message.body:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur consequuntur libero officiis possimus, ratione sed ut vero. Adipisci aperiam asperiores at consequuntur dicta doloremque et id illum inventore ipsa iste laudantium maxime molestiae, mollitia nam natus nesciunt nobis omnis, perferendis provident quaerat quas quasi quia quisquam reiciendis suscipit tempora, tempore.'}
                             </div>
                         </div>
                     </div>
