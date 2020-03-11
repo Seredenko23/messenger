@@ -1,0 +1,15 @@
+@import "../../../../../../../../style/variables";
+
+.link-preview-wrapper {
+  margin: 5px 0;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid $textColor;
+}
+
+.link-preview-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 5px;
+}
