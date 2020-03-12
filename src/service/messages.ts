@@ -1,4 +1,4 @@
-import  {BASE_URL} from "../config/config";
+import {BASE_URL} from "../config/config";
 import {Message} from "../models/messages";
 
 export async function createMessage(threadId:string, messageBody:string): Promise<Message> {
@@ -22,6 +22,7 @@ export async function getMessageByThreadId(threadId:string): Promise<Message> {
 
     return await response.json()
 }
+
 export async function deleteMessage(_id: string): Promise<void> {
     let response: Response = await fetch(`${BASE_URL}/message/${_id}`, {
         method: 'DELETE',

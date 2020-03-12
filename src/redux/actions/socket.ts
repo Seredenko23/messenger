@@ -1,7 +1,7 @@
 import {Action, ActionCreator, Dispatch} from "redux";
 import { Message } from "../../models/messages";
 import {SocketAction} from "./types/SocketActions";
-import {getMessageByThreadId} from "../../service/message";
+import {getMessageByThreadId} from "../../service/messages";
 
 export const NEW_MESSAGE: string = 'SOCKET:NEW_MESSAGE';
 export const ALL_MESSAGE: string = 'ALL_MESSAGE_ACTION';
