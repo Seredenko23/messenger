@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './ThreadOut.scss'
 import {connect} from "react-redux";
-import {User} from "../../models/user";
+import {User} from "../../../../models/user";
 import {bindActionCreators, Dispatch} from "redux";
-import {logOut} from "../../redux/actions/login";
+import {logOut} from "../../../../redux/actions/login";
 
 interface Props {
   user: User;
@@ -14,7 +14,7 @@ class ThreadOut extends Component<Props> {
 
   clickHandler = () => {
     this.props.logOut()
-  }
+  };
 
   render() {
     const {firstName, lastName} = this.props.user;
@@ -28,19 +28,19 @@ class ThreadOut extends Component<Props> {
         </div>
       </div>
     );
-    }
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     user: state.userReducer.user
   }
-}
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     logOut: bindActionCreators(logOut, dispatch)
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThreadOut);

@@ -21,6 +21,10 @@ export const calculateTime = (totalDuration: number, currentTime: number): numbe
   return (100*currentTime)/totalDuration
 }
 
+export const checkIfEmpty = (obj: Object) => {
+  return !Object.keys(obj).length
+}
+
 
 export const getYoutubeUrlId = (url: string): string => {
   return url.split('v=')[1].split('&')[0]

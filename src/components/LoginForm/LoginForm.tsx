@@ -5,11 +5,14 @@ import { bindActionCreators, Dispatch } from "redux";
 import './LoginForm.scss'
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
-import { withRouter } from "react-router";
+import {Redirect, withRouter} from "react-router";
+import {checkIfEmpty} from "../../service/utilities";
+import {User} from "../../models/user";
 
 interface Props {
   login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
   history: string[];
+  user: User;
 }
 
 interface State {
@@ -29,8 +32,7 @@ class LoginForm extends Component<Props,State> {
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // @ts-ignore
-    this.props.login(this.state);
-    this.props.history.push('/chat')
+    this.props.login(this.state)
   };
 
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -42,9 +44,10 @@ class LoginForm extends Component<Props,State> {
   render() {
     return (
     <div className='login'>
+      {!checkIfEmpty(this.props.user) && <Redirect to={'chat'}/>}
     <div className='wrapper'>
       <div className='block-login card'>
-      <div className='login-form-wrapper'>
+        <div className='login-form-wrapper'>
           <form name='loginForm'
                 className='login-form'
                 onSubmit={this.onSubmit}
@@ -86,6 +89,7 @@ class LoginForm extends Component<Props,State> {
 const mapStateToProps = (state) => {
   return {
     isPending: state.userReducer.isPending,
+    user: state.userReducer.user
   };
 };
 

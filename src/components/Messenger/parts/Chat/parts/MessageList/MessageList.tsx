@@ -8,7 +8,6 @@ import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/s
 import {User} from "../../../../../../models/user";
 
 interface Props {
-  threadId: string;
   messages: MessageType[];
   getAllMessage: (threadId: string) => void;
   subscribeMessage: () => void;
@@ -19,7 +18,6 @@ class MessageList extends Component<Props> {
 
   componentDidMount(): void {
     this.props.subscribeMessage();
-    this.props.getAllMessage(this.props.threadId)
   }
 
   render() {
@@ -47,7 +45,6 @@ class MessageList extends Component<Props> {
 const mapStateToProps = (state) => {
   return {
     messages: state.Socket.messages,
-    threadId: state.threadReducer.threadId,
     user: state.userReducer.user
   }
 };

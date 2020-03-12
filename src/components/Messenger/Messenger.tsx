@@ -3,7 +3,6 @@ import Chat from "./parts/Chat/Chat";
 import './Messenger.scss'
 import Thread from "../Thread/Thread";
 
-
 class Messenger extends Component {
 
   render() {

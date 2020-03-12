@@ -3,7 +3,8 @@ import {extractMetadataFromUrl} from "../../../../../../../../service/metadata";
 import './LinkPreview.scss'
 
 interface Props {
-  url: string
+  url: string;
+  type: string;
 }
 
 interface State {
@@ -34,21 +35,28 @@ class LinkPreview extends Component<Props, State> {
       })
   }
 
+  clickHandler = () => {
+    window.location.href = this.props.url
+  }
+
   render() {
     return (
-      <a className={'link'} href={this.props.url}>
-        <div className={'link-preview-wrapper'}>
-          <img alt={this.state.imgURL}
-               src={this.state.imgURL}
-               width={100}
-               height={100}
-          />
-          <div className={'link-preview-text'}>
-            <p>{this.state.title}</p>
-            <a href={this.props.url}>{this.state.host}</a>
-          </div>
+      <div className={`link-preview-wrapper ${this.props.type}`}
+           onClick={this.clickHandler}
+      >
+        <img alt={this.state.imgURL}
+             src={this.state.imgURL}
+             width={100}
+             height={100}
+        />
+        <div className={'link-preview-text'}>
+          <p>{this.state.title}</p>
+          <a href={this.props.url}
+             className={'fake-link'}>
+            {this.state.host}
+          </a>
         </div>
-      </a>
+      </div>
     );
   }
 }

@@ -64,7 +64,6 @@ class ChatInput extends Component<Props, State> {
               type: 'audio'
             }
           };
-          console.log(message);
           this.props.sendMessage(message);
           this.setState({ isRecording: false });
         })

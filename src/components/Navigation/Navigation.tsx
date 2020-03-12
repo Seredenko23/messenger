@@ -2,11 +2,8 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import SignUp from "../SignUp/SignUp";
 import LoginForm from "../LoginForm/LoginForm";
-
-import './Navigation.scss';
 import Messenger from "../Messenger/Messenger";
-import ThreadListInbox from "../ThreadListInbox/ThreadListInbox";
-import Thread from "../Thread/Thread";
+import './Navigation.scss';
 
 class Navigation extends Component {
   render() {
@@ -23,11 +20,10 @@ class Navigation extends Component {
             <LoginForm/>
           </Route>
           <Route path={'/chat'}>
-            <Thread/>
-
+            <Messenger/>
           </Route>
           <Route path={'/'}>
-            <Redirect to={'log-in'}/>{/*Вернуть в log-in*/}
+            <Redirect to={'log-in'}/>
           </Route>
         </Switch>
       </BrowserRouter>

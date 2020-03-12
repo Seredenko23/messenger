@@ -2,6 +2,7 @@ import {Action, ActionCreator, Dispatch} from "redux";
 import { Message } from "../../models/messages";
 import {SocketAction} from "./types/SocketActions";
 import {getMessageByThreadId} from "../../service/messages";
+import {changeThreadId} from "./thread";
 
 export const NEW_MESSAGE: string = 'SOCKET:NEW_MESSAGE';
 export const ALL_MESSAGE: string = 'ALL_MESSAGE_ACTION';
@@ -43,6 +44,7 @@ export const getAllMessage: (threadId: string)
     getMessageByThreadId(threadId)
       .then((messages) => {
         dispatch(allMessage(messages));
+        dispatch(changeThreadId(threadId))
       })
   }
 };

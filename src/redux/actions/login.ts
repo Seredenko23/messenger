@@ -3,10 +3,10 @@ import {logIn} from "../../service/logIn";
 import {User} from "../../models/user";
 import {DTO} from "../../service/model/dto";
 
-export const LOGIN_PENDING = 'LOGIN_PENDING';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOG_OUT = 'LOG_OUT';
+export const LOGIN_PENDING = 'ACTION_LOGIN_PENDING';
+export const LOGIN_SUCCESS = 'ACTION_LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'ACTION_LOGIN_ERROR';
+export const LOG_OUT = 'ACTION_LOG_OUT';
 
 export const setLoginPending: ActionCreator<Action> = () => {
   return {

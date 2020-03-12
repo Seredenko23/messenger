@@ -8,6 +8,7 @@ import moment from 'moment'
 import {youtubeOpt} from "../../../../../../../../config/config";
 import LinkPreview from "../LinkPreview/LinkPreview";
 
+
 interface Props {
   name: string;
   type?: string;
@@ -45,7 +46,9 @@ class Message extends Component<Props> {
         )
       case 'url':
         return (
-          <LinkPreview url={this.props.messageBody.body as string} />
+          <LinkPreview url={this.props.messageBody.body as string}
+                       type={this.props.type as string}
+          />
         )
     }
   };
