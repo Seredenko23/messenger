@@ -3,6 +3,7 @@ import './Thread.scss'
 import ThreadList from "../ThreadList/ThreadList";
 import ThreadUser from "../ThreadUser/ThreadUser";
 import ThreadOut from "../ThreadOut/ThreadOut";
+import ThreadListInbox from "../ThreadListInbox/ThreadListInbox";
 
 class Thread extends Component {
     render() {
@@ -10,6 +11,7 @@ class Thread extends Component {
             <div className='thread'>
                 <ThreadList/>
                 <div className='thread-user-message__list'>
+                    {/*<ThreadListInbox/>*/}
                     <ThreadUser/>
                     <ThreadUser/>
                     <ThreadUser/>
