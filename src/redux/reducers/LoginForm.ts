@@ -1,4 +1,5 @@
 import {
+  LOG_OUT,
   LOGIN_ERROR,
   LOGIN_PENDING,
   LOGIN_SUCCESS
@@ -15,7 +16,7 @@ const initialState: LoginState = {
   refreshToken: '',
 };
 
-export const loginReducer: Reducer<LoginState> = (state = initialState, action) => {
+export const userReducer: Reducer<LoginState> = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
@@ -36,6 +37,8 @@ export const loginReducer: Reducer<LoginState> = (state = initialState, action) 
         isPending: action.payload.isPending,
         error: action.payload.err
       };
+    case LOG_OUT:
+      return initialState;
     default:
       return state;
   }

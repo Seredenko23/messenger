@@ -27,15 +27,16 @@ class MessageList extends Component<Props> {
     return (
       <div className={'message-list'}>
         { messages.map((message: MessageType) => {
+          console.log(message.createdAt)
           let type = user._id === message.user._id ? 'my' : '';
           let fullName = `${message.user.firstName} ${message.user.lastName}`;
           return (
             <Message key={message._id}
                      type={type}
                      name={fullName}
-            >
-              {message.messageBody}
-            </Message>
+                     messageBody={message.messageBody}
+                     createdAt={message.createdAt as string}
+            />
           )
         })}
       </div>
@@ -47,7 +48,7 @@ const mapStateToProps = (state) => {
   return {
     messages: state.Socket.messages,
     threadId: state.threadReducer.threadId,
-    user: state.loginReducer.user
+    user: state.userReducer.user
   }
 };
 

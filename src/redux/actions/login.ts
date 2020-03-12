@@ -6,6 +6,7 @@ import {DTO} from "../../service/model/dto";
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOG_OUT = 'LOG_OUT';
 
 export const setLoginPending: ActionCreator<Action> = () => {
   return {
@@ -34,6 +35,12 @@ export const setLoginError: ActionCreator<Action> = (loginError: string) => {
       error: loginError
     }
   };
+};
+
+export const logOut: ActionCreator<Action> = () => {
+  return {
+    type: LOG_OUT
+  }
 };
 
 export const login: (user)

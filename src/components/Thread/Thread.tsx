@@ -4,6 +4,7 @@ import ThreadList from "../ThreadList/ThreadList";
 import ThreadUser from "../ThreadUser/ThreadUser";
 import ThreadOut from "../ThreadOut/ThreadOut";
 import ThreadListInbox from "../ThreadListInbox/ThreadListInbox";
+
 class Thread extends Component {
     render() {
         return (

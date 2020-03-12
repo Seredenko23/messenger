@@ -5,6 +5,8 @@ import { bindActionCreators, Dispatch } from "redux";
 import { sendMessage } from "../../../../../../redux/actions/socket";
 import { User } from "../../../../../../models/user";
 import { Message } from "../../../../../../models/messages";
+import MicRecorder from "mic-recorder-to-mp3"
+import {getType} from "../../../../../../service/utilities";
 
 interface Props {
   threadId: string;
@@ -14,15 +16,61 @@ interface Props {
 
 interface State {
   messageBody: string;
+  isRecording: boolean,
+  isBlocked: boolean,
 }
 
 class ChatInput extends Component<Props, State> {
+  Recorder = new MicRecorder({ bitRate: 128 });
   constructor(props) {
     super(props);
     this.state = {
-      messageBody: ''
+      messageBody: '',
+      isRecording: false,
+      isBlocked: false,
     }
   }
+
+  componentDidMount(): void {
+    navigator.getUserMedia({ audio: true },
+      () => {
+        console.log('Permission Granted');
+        this.setState({ isBlocked: false });
+      },
+      () => {
+        console.log('Permission Denied');
+        this.setState({ isBlocked: true })
+      },
+    );
+  }
+
+  record = () => {
+    if (this.state.isBlocked) console.log('Permission Denied');
+    if(!this.state.isRecording) {
+      this.Recorder.start()
+        .then(() => {
+          this.setState({ isRecording: true });
+        })
+        .catch((e: Error) => console.error(e));
+    } else {
+      this.Recorder.stop()
+        .getMp3()
+        .then(async ([buffer ,blob]) => {
+          const message: Message = {
+            threadId: this.props.threadId,
+            user: this.props.user,
+            messageBody: {
+              body: blob,
+              type: 'audio'
+            }
+          };
+          console.log(message);
+          this.props.sendMessage(message);
+          this.setState({ isRecording: false });
+        })
+        .catch((e: Error) => console.log(e));
+    }
+  };
 
   handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
     this.setState({
@@ -30,12 +78,15 @@ class ChatInput extends Component<Props, State> {
     })
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const message = {
+    const message: Message = {
       threadId: this.props.threadId,
       user: this.props.user,
-      messageBody: this.state.messageBody
+      messageBody: {
+        body: this.state.messageBody,
+        type: getType(this.state.messageBody)
+      }
     };
     this.props.sendMessage(message)
   };
@@ -48,9 +99,20 @@ class ChatInput extends Component<Props, State> {
                   value={this.state.messageBody}
                   onChange={this.handleChange}
         />
-        <button className={'chat-btn'}>
-          =>
-        </button>
+        {
+          this.state.messageBody ? (
+            <button className={'chat-btn'}>
+              =>
+            </button>
+          ) : (
+            <button className={`chat-btn ${this.state.isRecording ? 'active' : 'unactive'}`}
+                    type={'button'}
+                    onClick={this.record}
+            >
+              M
+            </button>
+          )
+        }
       </form>
     );
   }
@@ -59,7 +121,7 @@ class ChatInput extends Component<Props, State> {
 const mapStateToProps = (state) => {
   return {
     threadId: state.threadReducer.threadId,
-    user: state.loginReducer.user
+    user: state.userReducer.user
   }
 };
 

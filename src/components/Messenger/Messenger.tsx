@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import Chat from "./parts/Chat/Chat";
 import './Messenger.scss'
+import Thread from "../Thread/Thread";
+
 
 class Messenger extends Component {
 
   render() {
     return (
       <div className={'messenger-wrapper'}>
-      {/* Здесь будут треды и чат*/}
-      <Chat />
+        <Thread />
+        <Chat />
       </div>
     );
   }
