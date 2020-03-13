@@ -37,6 +37,14 @@ export const allMessage: ActionCreator<Action> = (messages: Message[]) => {
   }
 }
 
+export const changeRoom: ActionCreator<SocketAction> = (threadId: string) => {
+  return {
+    event: "join",
+    emit: true,
+    payload: threadId,
+  }
+}
+
 export const getAllMessage: (threadId: string)
   => (dispatch: Dispatch)
   => void = (threadId: string) => {
@@ -44,7 +52,9 @@ export const getAllMessage: (threadId: string)
     getMessageByThreadId(threadId)
       .then((messages) => {
         dispatch(allMessage(messages));
-        dispatch(changeThreadId(threadId))
+        dispatch(changeThreadId(threadId));
+        // @ts-ignore
+        dispatch(changeRoom(threadId));
       })
   }
 };

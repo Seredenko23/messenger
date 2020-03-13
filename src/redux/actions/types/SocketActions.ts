@@ -5,7 +5,7 @@ export interface SocketAction {
   leave?: boolean;
   emit?: boolean;
   handle?: string;
-  payload?: object;
+  payload?: any;
 }
 
 export interface ISocketMessage {
