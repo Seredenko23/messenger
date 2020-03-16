@@ -1,5 +1,12 @@
 .message-list {
+  position: relative;
   height: calc(100% - 158px);
   padding: 30px 30px 0;
   overflow-y: scroll;
+}
+
+.user-typing {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
 }

@@ -5,6 +5,7 @@ import {getMessageByThreadId} from "../../service/messages";
 import {changeThreadId} from "./thread";
 
 export const NEW_MESSAGE: string = 'SOCKET:NEW_MESSAGE';
+export const GET_TYPING: string = 'SOCKET:GET_TYPING';
 export const ALL_MESSAGE: string = 'ALL_MESSAGE_ACTION';
 
 
@@ -14,6 +15,13 @@ export const subscribeMessage: ActionCreator<SocketAction> = () => {
     handle: NEW_MESSAGE
   }
 };
+
+export const subscribeIsTyping: ActionCreator<SocketAction> = () => {
+  return {
+    event: "typing",
+    handle: GET_TYPING
+  }
+}
 
 export const unsubscribeMessage: ActionCreator<SocketAction> = () => {
   return {
@@ -42,6 +50,15 @@ export const changeRoom: ActionCreator<SocketAction> = (threadId: string) => {
     event: "join",
     emit: true,
     payload: threadId,
+  }
+}
+
+export const setIsTyping: ActionCreator<SocketAction> = (isTyping: boolean) => {
+  console.log(isTyping)
+  return {
+    event: 'typing',
+    emit: true,
+    payload: isTyping
   }
 }
 
