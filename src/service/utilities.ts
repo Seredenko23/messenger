@@ -46,7 +46,6 @@ const validateYoutubeUrl = (url: string): boolean => {
 }
 
 export const getType = (content: string): string => {
-  debugger
   if(validateYoutubeUrl(content)) {
     return 'youtube'
   } else if(validateImageUrl(content)) {

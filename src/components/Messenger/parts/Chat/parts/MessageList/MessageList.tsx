@@ -4,24 +4,27 @@ import Message from "./parts/Message/Message";
 import { Message as MessageType}  from "../../../../../../models/messages"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllMessage, subscribeMessage} from "../../../../../../redux/actions/socket"
+import {getAllMessage, subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
 
 interface Props {
   messages: MessageType[];
   getAllMessage: (threadId: string) => void;
   subscribeMessage: () => void;
+  subscribeIsTyping: () => void;
   user: User;
+  isTyping: boolean
 }
 
 class MessageList extends Component<Props> {
 
   componentDidMount(): void {
     this.props.subscribeMessage();
+    this.props.subscribeIsTyping();
   }
 
   render() {
-    const { user, messages } = this.props
+    const { user, messages, isTyping } = this.props
     return (
       <div className={'message-list'}>
         { messages.map((message: MessageType) => {
@@ -37,6 +40,7 @@ class MessageList extends Component<Props> {
             />
           )
         })}
+        <p className={'user-typing'}>{isTyping ? `${user.firstName} is typing...` : ''}</p>
       </div>
     );
   }
@@ -45,7 +49,8 @@ class MessageList extends Component<Props> {
 const mapStateToProps = (state) => {
   return {
     messages: state.Socket.messages,
-    user: state.userReducer.user
+    user: state.userReducer.user,
+    isTyping: state.Socket.isTyping
   }
 };
 
@@ -53,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllMessage: bindActionCreators(getAllMessage, dispatch),
     subscribeMessage: bindActionCreators(subscribeMessage, dispatch),
+    subscribeIsTyping: bindActionCreators(subscribeIsTyping, dispatch)
   }
 }
 

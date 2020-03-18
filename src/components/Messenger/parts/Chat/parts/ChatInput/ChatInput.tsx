@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import './ChatInput.scss'
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
-import { sendMessage } from "../../../../../../redux/actions/socket";
+import {sendMessage, setIsTyping} from "../../../../../../redux/actions/socket";
 import { User } from "../../../../../../models/user";
 import { Message } from "../../../../../../models/messages";
 import MicRecorder from "mic-recorder-to-mp3"
 import {getType} from "../../../../../../service/utilities";
+import './ChatInput.scss'
 
 interface Props {
   threadId: string;
   user: User;
   sendMessage: (message: Message) => void;
+  setIsTyping: (isTyping: boolean) => void
 }
 
 interface State {
   messageBody: string;
-  isRecording: boolean,
-  isBlocked: boolean,
+  isRecording: boolean;
+  isBlocked: boolean;
 }
 
 class ChatInput extends Component<Props, State> {
   Recorder = new MicRecorder({ bitRate: 128 });
+  timer: number | undefined;
   constructor(props) {
     super(props);
     this.state = {
@@ -77,8 +79,20 @@ class ChatInput extends Component<Props, State> {
     })
   };
 
+  handleOnKeyDown = () => {
+    this.props.setIsTyping(true);
+    clearTimeout(this.timer);
+    this.timer = window.setTimeout(() => {
+      this.props.setIsTyping(false)
+    }, 3000)
+  }
+
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(this.timer) {
+      clearTimeout(this.timer)
+      this.props.setIsTyping(false)
+    }
     const message: Message = {
       threadId: this.props.threadId,
       user: this.props.user,
@@ -97,6 +111,7 @@ class ChatInput extends Component<Props, State> {
                   placeholder={'Type something...'}
                   value={this.state.messageBody}
                   onChange={this.handleChange}
+                  onKeyDown={this.handleOnKeyDown}
         />
         {
           this.state.messageBody ? (
@@ -120,13 +135,15 @@ class ChatInput extends Component<Props, State> {
 const mapStateToProps = (state) => {
   return {
     threadId: state.threadReducer.threadId,
-    user: state.userReducer.user
+    user: state.userReducer.user,
+    isTyping: state.Socket.isTyping
   }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    sendMessage: bindActionCreators(sendMessage, dispatch)
+    sendMessage: bindActionCreators(sendMessage, dispatch),
+    setIsTyping: bindActionCreators(setIsTyping, dispatch)
   }
 };
 
