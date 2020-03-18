@@ -1,24 +1,27 @@
 .thread-user {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-bottom: 25px;
-  padding-top: 17px;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 15px;
 }
+
 .user-img {
   margin-right: 10px;
 }
+
 .thread-user__name-message {
   display: flex;
   flex-direction: column;
 }
+
 .thread-user__name {
   color: white;
   font-size: 20px;
   margin-bottom: 5px;
 }
-.thread-user__message {
 
+.thread-user__message {
   height: 5vh;
   overflow: hidden;
   color: #8b89b2;

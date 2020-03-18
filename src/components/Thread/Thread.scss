@@ -1,10 +1,10 @@
 .thread {
-  max-width: 30vw;
+  width: 30%;
   background-color: #3E3C61;
 
 }
 .thread-user-message__list {
-  height: 90vh;
+  height: calc(100% - 128px);
   overflow: scroll;
 }
 ::-webkit-scrollbar-track {  background-color: #999;}
