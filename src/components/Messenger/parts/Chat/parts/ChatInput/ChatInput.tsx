@@ -60,7 +60,7 @@ class ChatInput extends Component<Props, State> {
         .then(async ([buffer ,blob]) => {
           const message: Message = {
             threadId: this.props.threadId,
-            user: this.props.user,
+            user: this.props.user._id,
             messageBody: {
               body: blob,
               type: 'audio'
@@ -95,7 +95,7 @@ class ChatInput extends Component<Props, State> {
     }
     const message: Message = {
       threadId: this.props.threadId,
-      user: this.props.user,
+      user: this.props.user._id,
       messageBody: {
         body: this.state.messageBody,
         type: getType(this.state.messageBody)

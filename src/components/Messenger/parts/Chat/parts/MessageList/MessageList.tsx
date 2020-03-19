@@ -29,8 +29,8 @@ class MessageList extends Component<Props> {
       <div className={'message-list'}>
         { messages.map((message: MessageType) => {
           console.log(message.createdAt)
-          let type = user._id === message.user._id ? 'my' : '';
-          let fullName = `${message.user.firstName} ${message.user.lastName}`;
+          let type = user._id === (message.user as User)._id ? 'my' : '';
+          let fullName = `${(message.user as User).firstName} ${(message.user as User).lastName}`;
           return (
             <Message key={message._id}
                      type={type}
