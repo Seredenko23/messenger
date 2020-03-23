@@ -15,7 +15,7 @@ export async function createMessage(threadId:string, messageBody:string): Promis
     return await response.json()
 }
 
-export async function getMessageByThreadId(threadId:string): Promise<Message> {
+export async function getMessageByThreadId(threadId: string): Promise<Message> {
     let response: Response = await fetch(`${BASE_URL}/message/${threadId}`);
 
     if(response.status >= 400 && response.status <= 600) throw Error('Bad response');

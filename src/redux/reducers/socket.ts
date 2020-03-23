@@ -1,4 +1,11 @@
-import {ALL_MESSAGE, CLEAR_SEARCHABLE_USER, GET_SEARCHABLE_USER, GET_TYPING, NEW_MESSAGE} from "../actions/socket";
+import {
+  ALL_MESSAGE,
+  CLEAR_SEARCHABLE_USER,
+  GET_SEARCHABLE_USER,
+  GET_TYPING,
+  NEW_MESSAGE, SET_IS_EMPTY,
+  setIsEmpty
+} from "../actions/socket";
 import { Reducer} from "redux";
 import { SocketActions } from "../actions/types/SocketActions";
 import { SocketState } from "./types/SocketState";
@@ -6,7 +13,8 @@ import { SocketState } from "./types/SocketState";
 const initialState: SocketState = {
   messages: [],
   searchableUsers: [],
-  isTyping: false
+  isTyping: false,
+  isEmpty: true,
 };
 
 export const Socket: Reducer<SocketState, SocketActions> =
@@ -22,6 +30,8 @@ export const Socket: Reducer<SocketState, SocketActions> =
       return {...state, searchableUsers: action.payload};
     case CLEAR_SEARCHABLE_USER:
       return {...state, searchableUsers: []};
+    case SET_IS_EMPTY:
+      return {...state, isEmpty: action.payload};
     default:
       return state
   }

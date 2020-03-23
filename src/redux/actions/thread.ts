@@ -6,7 +6,7 @@ export const THREAD_PENDING: string = 'ACTION_REGISTER_PENDING';
 export const ADD_THREAD: string = 'ACTION_ADD_THREAD';
 export const THREAD_SUCCESS: string = 'ACTION_THREAD_SUCCESS';
 export const THREAD_ERROR: string = 'ACTION_THREAD_ERROR';
-export const CHANGE_THREAD_ID: string = 'ACTION_CHANGE_THREAD_ID';
+export const CHANGE_CURRENT_THREAD: string = 'ACTION_CHANGE_CURRENT_THREAD';
 
 
 const threadPending: ActionCreator<Action> = () => {
@@ -45,11 +45,11 @@ const threadError: ActionCreator<Action> = (error: string) => {
   }
 };
 
-export const changeThreadId: ActionCreator<Action> = (threadId: string) => {
+export const changeCurrentThread: ActionCreator<Action> = (thread: Thread) => {
   return {
-    type: CHANGE_THREAD_ID,
+    type: CHANGE_CURRENT_THREAD,
     payload: {
-      threadId: threadId
+      thread: thread
     }
   }
 }

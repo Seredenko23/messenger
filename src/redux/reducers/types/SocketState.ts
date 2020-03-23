@@ -5,4 +5,5 @@ export interface SocketState {
   messages: Message[];
   searchableUsers: User[]
   isTyping: boolean;
+  isEmpty: boolean;
 }

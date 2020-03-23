@@ -14,6 +14,7 @@ interface Props {
   user: User;
   threads: Thread[];
   searchableUsers: User[];
+  isEmpty: boolean;
 }
 
 class ThreadListInbox extends Component<Props> {
@@ -28,10 +29,10 @@ class ThreadListInbox extends Component<Props> {
 
   renderList = () => {
     let list: any;
-    if(this.props.searchableUsers.length) {
-      list = this.props.searchableUsers.map(user => <SearchedUser searchedUser={user} key={user._id}/>)
-    } else {
+    if(this.props.isEmpty) {
       list = this.props.threads.map(thread => <ThreadUser thread={thread} key={thread._id}/>)
+    } else {
+      list = this.props.searchableUsers.map(user => <SearchedUser searchedUser={user} key={user._id}/>)
     }
     return list
   }
@@ -50,6 +51,7 @@ const mapStateToProps = (state) => {
     user: state.userReducer.user,
     threads: state.threadReducer.threads,
     searchableUsers: state.Socket.searchableUsers,
+    isEmpty: state.Socket.isEmpty,
   };
 };
 

@@ -6,7 +6,7 @@ import {getAllMessage} from "../../../../../../redux/actions/socket";
 
 class ThreadUser extends Component<any,any> {
   updateMessage = () => {
-    this.props.getAllMessage(this.props.thread._id)
+    this.props.getAllMessage(this.props.thread)
   }
 
   render() {

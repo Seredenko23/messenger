@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './ThreadList.scss'
 import {bindActionCreators, Dispatch} from "redux";
-import {clearSearchableUser, getSearchableUser, subscribeSearchableUser} from "../../../../redux/actions/socket";
+import {clearSearchableUser, getSearchableUser, subscribeSearchableUser, setIsEmpty} from "../../../../redux/actions/socket";
 import {connect} from "react-redux";
 
 interface Props {
   subscribeSearchableUser: () => void;
   getSearchableUser: (searchStr: string) => void;
   clearSearchableUser: () => void;
+  setIsEmpty: (isEmpty: boolean) => void
 }
 
 interface State {
@@ -32,9 +33,10 @@ class ThreadList extends Component<Props, State> {
     }, () => {
       console.log(this.state)
       if(this.state.search) {
+        this.props.setIsEmpty(false)
         this.props.getSearchableUser(this.state.search)
       } else {
-        this.props.clearSearchableUser()
+        this.props.setIsEmpty(true)
       }
     });
   };
@@ -61,7 +63,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch),
     getSearchableUser: bindActionCreators(getSearchableUser, dispatch),
-    clearSearchableUser: bindActionCreators(clearSearchableUser, dispatch)
+    clearSearchableUser: bindActionCreators(clearSearchableUser, dispatch),
+    setIsEmpty: bindActionCreators(setIsEmpty, dispatch)
   }
 }
 
