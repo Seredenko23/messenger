@@ -25,7 +25,9 @@ class SearchedUser extends Component<Props> {
     return (
       <div className={'searched-user'}
            onClick={this.clickHandler}>
-        <p className={'searched-user-name'}>{`${this.props.searchedUser.firstName} ${this.props.searchedUser.lastName}`}</p>
+        <p className={'searched-user-name'}>
+          {`${this.props.searchedUser.firstName} ${this.props.searchedUser.lastName}`}
+        </p>
       </div>
     );
   }
