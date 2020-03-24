@@ -4,12 +4,11 @@ import Message from "./parts/Message/Message";
 import { Message as MessageType}  from "../../../../../../models/messages"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllMessage, subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
+import { subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
 
 interface Props {
   messages: MessageType[];
-  getAllMessage: (threadId: string) => void;
   subscribeMessage: () => void;
   subscribeIsTyping: () => void;
   user: User;
@@ -56,7 +55,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllMessage: bindActionCreators(getAllMessage, dispatch),
     subscribeMessage: bindActionCreators(subscribeMessage, dispatch),
     subscribeIsTyping: bindActionCreators(subscribeIsTyping, dispatch)
   }

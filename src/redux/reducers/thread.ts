@@ -2,7 +2,7 @@ import {
   THREAD_ERROR,
   THREAD_PENDING,
   THREAD_SUCCESS,
-  ADD_THREAD, CHANGE_THREAD_ID
+  ADD_THREAD, CHANGE_CURRENT_THREAD
 } from "../actions/thread";
 
 import { ThreadState } from "./types/ThreadState";
@@ -10,7 +10,7 @@ import { Reducer } from "redux";
 
 const initialState: ThreadState = {
   isPending: false,
-  threadId: "",
+  currentThread: {},
   threads: []
 };
 
@@ -38,10 +38,10 @@ export const threadReducer: Reducer<ThreadState> = (state = initialState, action
         ...state,
         threads: [ ...state.threads, action.payload.thread ]
       };
-    case CHANGE_THREAD_ID:
+    case CHANGE_CURRENT_THREAD:
       return {
         ...state,
-        threadId: action.payload.threadId
+        currentThread: action.payload.thread
       };
     default:
       return state;

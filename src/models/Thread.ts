@@ -1,6 +1,6 @@
 import {User} from "./user";
 
 export interface Thread {
-  _id: number;
+  _id: string;
   users: User[];
 }

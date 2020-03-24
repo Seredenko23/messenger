@@ -4,7 +4,7 @@ import {MessageBody} from "./MessageBody";
 export interface Message {
   _id?: string;
   threadId: string;
-  user: User | number;
+  user: User | string;
   messageBody: MessageBody;
   createdAt?: string;
 }

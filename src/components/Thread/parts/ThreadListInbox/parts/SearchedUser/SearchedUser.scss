@@ -1,0 +1,13 @@
+.searched-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 15px;
+}
+
+.searched-user-name {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
