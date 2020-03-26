@@ -1,19 +1,9 @@
 import React, {Component} from 'react';
 import {extractMetadataFromUrl} from "../../../../../../../../service/metadata";
 import './LinkPreview.scss'
+import {LinkPreviewProps, LinkPreviewState} from "./models/LinkPreview";
 
-interface Props {
-  url: string;
-  type: string;
-}
-
-interface State {
-  imgURL: string;
-  title: string;
-  host: string;
-}
-
-class LinkPreview extends Component<Props, State> {
+class LinkPreview extends Component<LinkPreviewProps, LinkPreviewState> {
 
   constructor(props) {
     super(props);

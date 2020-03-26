@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import './FormButton.scss'
+import {FormButtonProps} from "./models/FormButton";
 
-interface Props {
-  type: 'button' | 'reset' | 'submit' | undefined
-}
-
-class FormButton extends Component<Props> {
+class FormButton extends Component<FormButtonProps> {
   render() {
     return (
       <button className={'form-button'}

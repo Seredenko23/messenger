@@ -1,24 +1,13 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
-import {getThreads} from "../../../../redux/actions/thread";
+import {getThreads} from "../../../../../../redux/actions/thread";
 import {connect} from "react-redux";
 import ThreadUser from "./parts/ThreadUser/ThreadUser";
-import {User} from "../../../../models/user";
-import {Thread} from "../../../../models/Thread";
-import {subscribeSearchableUser} from "../../../../redux/actions/socket";
+import {subscribeSearchableUser} from "../../../../../../redux/actions/socket";
 import SearchedUser from "./parts/SearchedUser/SearchedUser";
+import {ThreadListInboxProps} from "./models/ThreadListInbox";
 
-interface Props {
-  subscribeSearchableUser: () => void;
-  getThreads: (string) => void;
-  user: User;
-  threads: Thread[];
-  currentThread: Thread;
-  searchableUsers: User[];
-  isEmpty: boolean;
-}
-
-class ThreadListInbox extends Component<Props> {
+class ThreadListInbox extends Component<ThreadListInboxProps> {
   constructor(props) {
     super(props);
   }

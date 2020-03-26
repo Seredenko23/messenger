@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './ThreadOut.scss'
 import {connect} from "react-redux";
-import {User} from "../../../../models/user";
+import {User} from "../../../../../../models/user";
 import {bindActionCreators, Dispatch} from "redux";
-import {logOut} from "../../../../redux/actions/login";
+import {logOut} from "../../../../../../redux/actions/login";
 
 interface Props {
   user: User;

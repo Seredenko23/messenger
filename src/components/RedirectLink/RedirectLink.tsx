@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router";
 import './RedirectLink.scss'
+import {RedirectLinkProps} from "./models/RedirectLink";
 
-interface Props{
-  link: string
-  history: string[]
-}
-
-class RedirectLink extends Component<Props> {
+class RedirectLink extends Component<RedirectLinkProps> {
 
   handlerCreator: (link: string) => void = (link) => {
       this.props.history.push(link)

@@ -1,18 +1,9 @@
 import React, {Component} from 'react';
 import './AudioPlayer.scss'
 import {calculateTime} from "../../../../../../../../service/utilities";
+import {AudioPlayerProps, AudioPlayerState} from "./models/AudioPlayer";
 
-interface Props {
-  url: string;
-}
-
-interface State {
-  isPlaying: boolean;
-  totalDuration: number;
-  barSize: number;
-}
-
-class AudioPlayer extends Component<Props, State> {
+class AudioPlayer extends Component<AudioPlayerProps, AudioPlayerState> {
   private audio: React.RefObject<HTMLAudioElement> = React.createRef<HTMLAudioElement>();
   constructor(props) {
     super(props);
@@ -20,7 +11,7 @@ class AudioPlayer extends Component<Props, State> {
       isPlaying: false,
       totalDuration: 0,
       barSize: 0,
-    }
+    };
   }
 
   clickHandler = () => {

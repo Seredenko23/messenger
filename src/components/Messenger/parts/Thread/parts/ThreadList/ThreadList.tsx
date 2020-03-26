@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
 import './ThreadList.scss'
 import {bindActionCreators, Dispatch} from "redux";
-import {clearSearchableUser, getSearchableUser, subscribeSearchableUser, setIsEmpty} from "../../../../redux/actions/socket";
+import {clearSearchableUser, getSearchableUser, subscribeSearchableUser, setIsEmpty} from "../../../../../../redux/actions/socket";
 import {connect} from "react-redux";
+import {ThreadListProps, ThreadListState} from "./models/ThreadList";
 
-interface Props {
-  subscribeSearchableUser: () => void;
-  getSearchableUser: (searchStr: string) => void;
-  clearSearchableUser: () => void;
-  setIsEmpty: (isEmpty: boolean) => void
-}
-
-interface State {
-  search: string
-}
-
-class ThreadList extends Component<Props, State> {
+class ThreadList extends Component<ThreadListProps, ThreadListState> {
   constructor(props) {
     super(props);
     this.state = {

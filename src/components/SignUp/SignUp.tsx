@@ -7,16 +7,9 @@ import FormButton from "../FormButton/FormButton";
 import {email, minLength6, required} from "../../service/validators";
 import RedirectLink from "../RedirectLink/RedirectLink";
 import './SignUp.scss'
+import {SignUpProps, SignUpState} from "./models/SignUp";
 
-interface Props {
-  registerUser: (user) => void;
-}
-
-interface State {
-  [param: string]: string;
-}
-
-class SignUp extends Component<Props, State> {
+class SignUp extends Component<SignUpProps, SignUpState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,7 +85,7 @@ class SignUp extends Component<Props, State> {
             Submit
           </FormButton>
           <RedirectLink link={'log-in'}>
-            Redirect
+            Login
           </RedirectLink>
         </form>
       </div>

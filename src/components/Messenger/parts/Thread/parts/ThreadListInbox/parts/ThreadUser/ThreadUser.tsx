@@ -2,18 +2,10 @@ import React, {Component} from 'react';
 import './ThreadUser.scss'
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {getAllMessage} from "../../../../../../redux/actions/socket";
-import {User} from "../../../../../../models/user";
-import {Thread} from "../../../../../../models/Thread";
+import {getAllMessage} from "../../../../../../../../redux/actions/socket";
+import {ThreadUserProps} from "./models/ThreadUser";
 
-interface Props {
-  user: User;
-  getAllMessage: (thread: Thread) => void;
-  thread: Thread;
-  className: string;
-}
-
-class ThreadUser extends Component<Props> {
+class ThreadUser extends Component<ThreadUserProps> {
   updateMessage = () => {
     this.props.getAllMessage(this.props.thread)
   }

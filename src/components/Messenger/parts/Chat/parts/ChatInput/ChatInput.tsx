@@ -2,26 +2,13 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import {sendMessage, setIsTyping} from "../../../../../../redux/actions/socket";
-import { User } from "../../../../../../models/user";
 import { Message } from "../../../../../../models/messages";
 import MicRecorder from "mic-recorder-to-mp3"
 import {getType} from "../../../../../../service/utilities";
 import './ChatInput.scss'
+import {ChatInputProps, ChatInputState} from "./models/ChatInput";
 
-interface Props {
-  threadId: string;
-  user: User;
-  sendMessage: (message: Message) => void;
-  setIsTyping: (isTyping: boolean) => void
-}
-
-interface State {
-  messageBody: string;
-  isRecording: boolean;
-  isBlocked: boolean;
-}
-
-class ChatInput extends Component<Props, State> {
+class ChatInput extends Component<ChatInputProps, ChatInputState> {
   Recorder = new MicRecorder({ bitRate: 128 });
   timer: number | undefined;
   constructor(props) {

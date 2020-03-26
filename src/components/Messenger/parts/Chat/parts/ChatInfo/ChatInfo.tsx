@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 import './ChatInfo.scss'
 import {connect} from "react-redux";
-import {Thread} from "../../../../../../models/Thread";
-import {User} from "../../../../../../models/user";
+import {ChatInfoProps} from "./models/ChatInfo";
 
-interface Props {
-  currentThread: Thread,
-  user: User
-}
 
-class ChatInfo extends Component<Props> {
+class ChatInfo extends Component<ChatInfoProps> {
   generateFullName = () => {
     let fullName: string;
     if(this.props.currentThread.users) {

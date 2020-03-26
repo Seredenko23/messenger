@@ -1,20 +1,8 @@
 import React, {Component} from 'react';
 import './FormInput.scss'
+import {FormInputProps, FormInputState} from "./models/FormInput";
 
-interface Props {
-  type: string;
-  placeholder?: string;
-  value: string;
-  handler?: (event: React.FormEvent<HTMLInputElement>) => void;
-  name: string;
-  validate?: ((value: string) => string | null)[];
-}
-
-interface State {
-  dirty: boolean;
-}
-
-class FormInput extends Component<Props, State> {
+class FormInput extends Component<FormInputProps, FormInputState> {
   constructor(props) {
     super(props);
     this.state = {

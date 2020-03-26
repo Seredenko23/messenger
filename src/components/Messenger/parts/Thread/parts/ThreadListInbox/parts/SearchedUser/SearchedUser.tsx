@@ -1,20 +1,12 @@
 import React, {Component} from 'react';
-import {User} from "../../../../../../models/user";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {createNewThread, getThreads} from "../../../../../../redux/actions/thread";
+import {createNewThread, getThreads} from "../../../../../../../../redux/actions/thread";
 import './SearchedUser.scss'
-import { setIsEmpty } from "../../../../../../redux/actions/socket";
+import { setIsEmpty } from "../../../../../../../../redux/actions/socket";
+import {SearchedUserProps} from "./models/SearchedUser";
 
-interface Props {
-  createNewThread: (currentUser: string, user:string) => void;
-  searchedUser: User;
-  setIsEmpty: (isEmpty: boolean) => void;
-  user: User;
-  getThreads: (userId: string) => void
-}
-
-class SearchedUser extends Component<Props> {
+class SearchedUser extends Component<SearchedUserProps> {
   clickHandler = () => {
     this.props.createNewThread(this.props.searchedUser._id, this.props.user._id)
     this.props.setIsEmpty(true)

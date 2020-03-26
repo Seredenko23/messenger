@@ -8,18 +8,10 @@ import FormButton from "../FormButton/FormButton";
 import {Redirect, withRouter} from "react-router";
 import {checkIfEmpty} from "../../service/utilities";
 import {User} from "../../models/user";
+import {LoginFormProps, LoginFormState} from "./models/LoginForm";
+import RedirectLink from "../RedirectLink/RedirectLink";
 
-interface Props {
-  login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
-  history: string[];
-  user: User;
-}
-
-interface State {
-  [param: string]: string;
-}
-
-class LoginForm extends Component<Props,State> {
+class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
   constructor(props) {
     super(props);
@@ -48,6 +40,7 @@ class LoginForm extends Component<Props,State> {
     <div className='wrapper'>
       <div className='block-login card'>
         <div className='login-form-wrapper'>
+          <h1 className={'login-header'}>Login</h1>
           <form name='loginForm'
                 className='login-form'
                 onSubmit={this.onSubmit}
@@ -78,10 +71,13 @@ class LoginForm extends Component<Props,State> {
               Submit
             </FormButton>
           </form>
+          <RedirectLink link={'sign-up'}>
+            Sign-up
+          </RedirectLink>
         </div>
       </div>
     </div>
-   </div>
+    </div>
     );
   }
 }

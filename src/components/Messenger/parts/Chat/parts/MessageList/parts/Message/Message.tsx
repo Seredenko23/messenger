@@ -7,16 +7,9 @@ import Youtube from "react-youtube"
 import moment from 'moment'
 import {youtubeOpt} from "../../../../../../../../config/config";
 import LinkPreview from "../LinkPreview/LinkPreview";
+import {MessageProps} from "./models/Message";
 
-
-interface Props {
-  name: string;
-  type?: string;
-  messageBody: MessageBody;
-  createdAt: string;
-}
-
-class Message extends Component<Props> {
+class Message extends Component<MessageProps> {
 
   createMessage = (messageBody: MessageBody) => {
     switch (messageBody.type) {

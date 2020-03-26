@@ -6,16 +6,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
+import {MessageListProps} from "./models/MessageList";
 
-interface Props {
-  messages: MessageType[];
-  subscribeMessage: () => void;
-  subscribeIsTyping: () => void;
-  user: User;
-  isTyping: boolean
-}
-
-class MessageList extends Component<Props> {
+class MessageList extends Component<MessageListProps> {
 
   componentDidMount(): void {
     this.props.subscribeMessage();
