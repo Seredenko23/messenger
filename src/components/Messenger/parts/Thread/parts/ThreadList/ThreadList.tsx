@@ -42,7 +42,7 @@ class ThreadList extends Component<ThreadListProps, ThreadListState> {
                  value={this.state.search}
                  onChange={this.handleChange}
           />
-          <i className="fas fa-plus thread-search-icon"/>
+          {this.props.children}
         </div>
       </div>
     );

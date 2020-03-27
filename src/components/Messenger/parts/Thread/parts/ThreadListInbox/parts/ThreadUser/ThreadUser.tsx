@@ -16,7 +16,6 @@ class ThreadUser extends Component<ThreadUserProps> {
         <div>
           <div className='thread-user__wrapper' onClick={this.updateMessage}>
             <div className={`thread-user ${this.props.className}`}>
-              <img src={"user.png"} alt="" width='80px' height='80px' className='user-img'/>
                 <div className='thread-user__name-message'>
                   <div className='thread-user__name'>
                     {

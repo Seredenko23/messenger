@@ -1,7 +1,11 @@
 .thread {
   width: 30%;
   background-color: #3E3C61;
-
+  @media screen and (max-width: 320px) {
+    & {
+      display: none;
+    }
+  }
 }
 .thread-user-message__list {
   height: calc(100% - 128px);
