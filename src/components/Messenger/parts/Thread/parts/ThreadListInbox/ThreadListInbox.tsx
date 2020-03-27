@@ -13,8 +13,8 @@ class ThreadListInbox extends Component<ThreadListInboxProps> {
   }
 
   componentDidMount(): void {
-    this.props.subscribeSearchableUser()
-    this.props.getThreads(this.props.user._id)
+    this.props.subscribeSearchableUser();
+    this.props.getThreads(this.props.user._id);
   }
 
   renderList = () => {
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getThreads: bindActionCreators(getThreads, dispatch),
-    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch)
+    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch),
   }
 };
 

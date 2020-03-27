@@ -46,7 +46,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
         .getMp3()
         .then(async ([buffer ,blob]) => {
           const message: Message = {
-            threadId: this.props.threadId,
+            threadId: this.props.currentThread._id,
             user: this.props.user._id,
             messageBody: {
               body: blob,
@@ -81,7 +81,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
       this.props.setIsTyping(false)
     }
     const message: Message = {
-      threadId: this.props.threadId,
+      threadId: this.props.currentThread._id,
       user: this.props.user._id,
       messageBody: {
         body: this.state.messageBody,
@@ -121,7 +121,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
 
 const mapStateToProps = (state) => {
   return {
-    threadId: state.threadReducer.threadId,
+    currentThread: state.threadReducer.currentThread,
     user: state.userReducer.user,
     isTyping: state.Socket.isTyping
   }

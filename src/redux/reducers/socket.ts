@@ -3,8 +3,8 @@ import {
   CLEAR_SEARCHABLE_USER,
   GET_SEARCHABLE_USER,
   GET_TYPING,
-  NEW_MESSAGE, SET_IS_EMPTY,
-  setIsEmpty
+  NEW_MESSAGE,
+  SET_IS_EMPTY,
 } from "../actions/socket";
 import { Reducer} from "redux";
 import { SocketActions } from "../actions/types/SocketActions";
