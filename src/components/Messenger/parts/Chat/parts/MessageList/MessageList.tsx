@@ -9,10 +9,23 @@ import {User} from "../../../../../../models/user";
 import {MessageListProps} from "./models/MessageList";
 
 class MessageList extends Component<MessageListProps> {
+  private anchor: React.RefObject<HTMLDivElement>;
+  constructor(props) {
+    super(props)
+    this.anchor = React.createRef()
+  }
 
   componentDidMount(): void {
     this.props.subscribeMessage();
     this.props.subscribeIsTyping();
+  }
+
+  componentDidUpdate(prevProps: Readonly<MessageListProps>, prevState: Readonly<{}>, snapshot?: any): void {
+    this.scrollToBottom()
+  }
+
+  scrollToBottom = () => {
+    this.anchor.current?.scrollIntoView({behavior: 'smooth', block: 'end'})
   }
 
   render() {
@@ -20,7 +33,6 @@ class MessageList extends Component<MessageListProps> {
     return (
       <div className={'message-list'}>
         { messages.map((message: MessageType) => {
-          console.log(message.createdAt)
           let type = user._id === (message.user as User)._id ? 'my' : '';
           let fullName = `${(message.user as User).firstName} ${(message.user as User).lastName}`;
           return (
@@ -33,6 +45,7 @@ class MessageList extends Component<MessageListProps> {
           )
         })}
         <p className={'user-typing'}>{isTyping ? `${user.firstName} is typing...` : ''}</p>
+        <div className={'anchor'} ref={this.anchor} />
       </div>
     );
   }

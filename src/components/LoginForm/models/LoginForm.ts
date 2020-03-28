@@ -5,6 +5,7 @@ export interface LoginFormProps {
   login: (user: {email: string, password: string}) => (dispatch: Dispatch) => void;
   history: string[];
   user: User;
+  error: string;
 }
 
 export interface LoginFormState {

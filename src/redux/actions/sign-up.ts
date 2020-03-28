@@ -37,6 +37,7 @@ export const registerUser: (user: User)
         dispatch(registerSuccess());
     })
       .catch(err => {
+        console.log(err)
         dispatch(registerError());
     })
   }

@@ -41,6 +41,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
       <div className='block-login card'>
         <div className='login-form-wrapper'>
           <h1 className={'login-header'}>Login</h1>
+          {this.props.error && <p>{this.props.error.toString()}</p>}
           <form name='loginForm'
                 className='login-form'
                 onSubmit={this.onSubmit}
@@ -85,7 +86,8 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
 const mapStateToProps = (state) => {
   return {
     isPending: state.userReducer.isPending,
-    user: state.userReducer.user
+    user: state.userReducer.user,
+    error: state.userReducer.error
   };
 };
 

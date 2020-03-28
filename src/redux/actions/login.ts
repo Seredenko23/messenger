@@ -32,7 +32,7 @@ export const setLoginError: ActionCreator<Action> = (loginError: string) => {
     type: LOGIN_ERROR,
     payload: {
       isPending: false,
-      error: loginError
+      err: loginError
     }
   };
 };
@@ -54,6 +54,7 @@ export const login: (user)
         dispatch(setLoginSuccess(success));
       })
       .catch(err => {
+        console.log(err);
         dispatch(setLoginError(err));
       });
   };
