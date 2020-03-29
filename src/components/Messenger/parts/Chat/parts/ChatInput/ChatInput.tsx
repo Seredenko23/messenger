@@ -9,7 +9,7 @@ import './ChatInput.scss'
 import {ChatInputProps, ChatInputState} from "./models/ChatInput";
 
 class ChatInput extends Component<ChatInputProps, ChatInputState> {
-  Recorder = new MicRecorder({ bitRate: 128 });
+  Recorder: MicRecorder = new MicRecorder({ bitRate: 128 });
   timer: number | undefined;
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     );
   }
 
-  record = () => {
+  record = (): void => {
     if (this.state.isBlocked) console.log('Permission Denied');
     if(!this.state.isRecording) {
       this.Recorder.start()
@@ -66,7 +66,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     })
   };
 
-  handleOnKeyDown = () => {
+  handleOnKeyDown = (): void => {
     this.props.setIsTyping(true);
     clearTimeout(this.timer);
     this.timer = window.setTimeout(() => {
@@ -74,7 +74,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     }, 3000)
   }
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if(this.timer) {
       clearTimeout(this.timer)

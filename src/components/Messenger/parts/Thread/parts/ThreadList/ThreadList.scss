@@ -6,20 +6,21 @@
   align-items: center;
   padding: 0 15px;
   border-bottom: .2px solid #A5A3C8;
+  .input-search {
+    background-color: #3F3D62;
+    color: #A5A3C8;
+    width: 100%;
+    border: none;
+    margin: 0 15px;
+    height: 30px;
+    padding: 0 10px;
+  }
+
+  .thread-search-icon {
+    font-size: 20px;
+    color: #A5A3C8;
+    cursor: pointer;
+  }
 }
 
-.input-search {
-  background-color: #3F3D62;
-  color: #A5A3C8;
-  width: 100%;
-  border: none;
-  margin: 0 15px;
-  height: 30px;
-  padding: 0 10px;
-}
 
-.thread-search-icon {
-  font-size: 20px;
-  color: #A5A3C8;
-  cursor: pointer;
-}

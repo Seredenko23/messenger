@@ -8,6 +8,7 @@ import {email, minLength6, required} from "../../service/validators";
 import RedirectLink from "../RedirectLink/RedirectLink";
 import './SignUp.scss'
 import {SignUpProps, SignUpState} from "./models/SignUp";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 class SignUp extends Component<SignUpProps, SignUpState> {
   constructor(props) {
@@ -27,7 +28,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
     })
   };
 
-  onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  onSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     this.props.registerUser(this.state)
   };
@@ -41,6 +42,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
           <div className={'header-wrapper'}>
             <h1>Sign up</h1>
           </div>
+          {this.props.error && <ErrorMessage error={this.props.error} />}
           <label className={'sing-up-label'}>First Name</label>
           <FormInput type="text"
                      name={'firstName'}
@@ -93,10 +95,16 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    error: state.signUp.error
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     registerUser: bindActionCreators(registerUser, dispatch),
   }
 };
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

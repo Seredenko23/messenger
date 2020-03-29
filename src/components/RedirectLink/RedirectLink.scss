@@ -3,8 +3,7 @@
 .redirect-link {
   color: $textColor;
   cursor: pointer;
-}
-
-.redirect-link:hover {
-  color: #A190A7;
+  &:hover {
+    color: #A190A7;
+  }
 }

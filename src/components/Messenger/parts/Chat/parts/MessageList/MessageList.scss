@@ -3,10 +3,9 @@
   height: calc(100% - 158px);
   padding: 30px 30px 0;
   overflow-y: scroll;
-}
-
-.user-typing {
-  position: fixed;
-  bottom: 80px;
-  left: 35%;
+  .user-typing {
+    position: fixed;
+    bottom: 80px;
+    left: 35%;
+  }
 }

@@ -10,6 +10,7 @@ import {checkIfEmpty} from "../../service/utilities";
 import {User} from "../../models/user";
 import {LoginFormProps, LoginFormState} from "./models/LoginForm";
 import RedirectLink from "../RedirectLink/RedirectLink";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
@@ -21,7 +22,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
     };
   }
 
-  onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // @ts-ignore
     this.props.login(this.state)
@@ -41,7 +42,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
       <div className='block-login card'>
         <div className='login-form-wrapper'>
           <h1 className={'login-header'}>Login</h1>
-          {this.props.error && <p>{this.props.error.toString()}</p>}
+          {this.props.error && <ErrorMessage error={this.props.error} />}
           <form name='loginForm'
                 className='login-form'
                 onSubmit={this.onSubmit}

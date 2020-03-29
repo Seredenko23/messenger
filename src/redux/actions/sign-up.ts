@@ -20,10 +20,13 @@ const registerSuccess: ActionCreator<Action> = () => {
   }
 };
 
-const registerError: ActionCreator<Action> = () => {
+const registerError: ActionCreator<Action> = (err: Error) => {
   return {
     type: REGISTER_ERROR,
-    payload: false,
+    payload: {
+      isPending: false,
+      error: err
+    },
   }
 };
 
@@ -37,8 +40,7 @@ export const registerUser: (user: User)
         dispatch(registerSuccess());
     })
       .catch(err => {
-        console.log(err)
-        dispatch(registerError());
+        dispatch(registerError(err));
     })
   }
 };

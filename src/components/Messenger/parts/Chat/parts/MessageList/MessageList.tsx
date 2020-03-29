@@ -9,7 +9,7 @@ import {User} from "../../../../../../models/user";
 import {MessageListProps} from "./models/MessageList";
 
 class MessageList extends Component<MessageListProps> {
-  private anchor: React.RefObject<HTMLDivElement>;
+  private readonly anchor: React.RefObject<HTMLDivElement>;
   constructor(props) {
     super(props)
     this.anchor = React.createRef()
@@ -20,11 +20,11 @@ class MessageList extends Component<MessageListProps> {
     this.props.subscribeIsTyping();
   }
 
-  componentDidUpdate(prevProps: Readonly<MessageListProps>, prevState: Readonly<{}>, snapshot?: any): void {
+  componentDidUpdate(): void {
     this.scrollToBottom()
   }
 
-  scrollToBottom = () => {
+  scrollToBottom = (): void => {
     this.anchor.current?.scrollIntoView({behavior: 'smooth', block: 'end'})
   }
 
