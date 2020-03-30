@@ -6,6 +6,7 @@ export async function regUser(userData: User): Promise<User> {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': sessionStorage.getItem('token') as string
     },
     body: JSON.stringify(userData),
   });
