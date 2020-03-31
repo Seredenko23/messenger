@@ -5,7 +5,7 @@ import {RedirectLinkProps} from "./models/RedirectLink";
 
 class RedirectLink extends Component<RedirectLinkProps> {
 
-  handlerCreator: (link: string) => void = (link) => {
+  handlerCreator = (link: string): void  => {
       this.props.history.push(link)
   };
 

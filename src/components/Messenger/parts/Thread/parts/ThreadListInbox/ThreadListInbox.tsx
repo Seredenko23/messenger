@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from "redux";
+import {bindActionCreators, Dispatch} from "redux";
 import {getThreads} from "../../../../../../redux/actions/thread";
 import {connect} from "react-redux";
 import ThreadUser from "./parts/ThreadUser/ThreadUser";
@@ -8,16 +8,12 @@ import SearchedUser from "./parts/SearchedUser/SearchedUser";
 import {ThreadListInboxProps} from "./models/ThreadListInbox";
 
 class ThreadListInbox extends Component<ThreadListInboxProps> {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount(): void {
-    this.props.subscribeSearchableUser()
-    this.props.getThreads(this.props.user._id)
+    this.props.subscribeSearchableUser();
+    this.props.getThreads(this.props.user._id);
   }
 
-  renderList = () => {
+  renderList = (): React.Component => {
     let list: any;
     if(this.props.isEmpty) {
       list = this.props.threads.map(thread => {
@@ -49,10 +45,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     getThreads: bindActionCreators(getThreads, dispatch),
-    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch)
+    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch),
   }
 };
 

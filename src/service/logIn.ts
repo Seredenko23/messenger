@@ -10,7 +10,8 @@ export async function logIn(user: User): Promise<DTO<User>> {
     },
     body: JSON.stringify(user),
   });
-  if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
+  if(response.status >= 400 && response.status <= 600) throw Error(await response.json());
+  sessionStorage.setItem('token', response.headers.get('access-token') as string)
   const tokens = {
     accessToken: response.headers.get('access-token'),
     refreshToken: response.headers.get('refresh-token')

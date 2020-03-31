@@ -6,6 +6,7 @@ import ThreadList from "../../../Thread/parts/ThreadList/ThreadList";
 import ThreadListInbox from "../../../Thread/parts/ThreadListInbox/ThreadListInbox";
 import ThreadOut from "../../../Thread/parts/ThreadOut/ThreadOut";
 import Anime from "react-anime";
+
 interface Modal {
   isOpen: boolean
 }
@@ -17,17 +18,19 @@ class ChatInfo extends Component<ChatInfoProps,Modal> {
       isOpen: false
     }
   }
-  generateFullName = () => {
+
+  generateFullName = (): string => {
     let fullName: string;
     if(this.props.currentThread.users) {
       fullName = this.props.user._id === this.props.currentThread.users[0]._id ?
         `${this.props.currentThread.users[1].firstName} ${this.props.currentThread.users[1].lastName}`
         : `${this.props.currentThread.users[0].firstName} ${this.props.currentThread.users[0].lastName}`;
     } else {
-      fullName = '';
+      fullName = ''
     }
     return fullName
   };
+
   render() {
     return (
         <div>

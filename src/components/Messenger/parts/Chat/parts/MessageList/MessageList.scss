@@ -8,10 +8,9 @@
       padding: 30px 15px 0;
     }
   }
-}
-
-.user-typing {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
+  .user-typing {
+    position: fixed;
+    bottom: 80px;
+    left: 35%;
+  } 
 }

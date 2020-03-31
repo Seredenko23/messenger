@@ -17,7 +17,7 @@ class ThreadList extends Component<ThreadListProps, ThreadListState> {
     this.props.subscribeSearchableUser()
   }
 
-  handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       search: event.currentTarget.value
     }, () => {

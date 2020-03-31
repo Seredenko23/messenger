@@ -1,8 +1,9 @@
 import {User} from "../../../../../../../models/user";
 import {Message} from "../../../../../../../models/messages";
+import {Thread} from "../../../../../../../models/Thread";
 
 export interface ChatInputProps {
-  threadId: string;
+  currentThread: Thread;
   user: User;
   sendMessage: (message: Message) => void;
   setIsTyping: (isTyping: boolean) => void
