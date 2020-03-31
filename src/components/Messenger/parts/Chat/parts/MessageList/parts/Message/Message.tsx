@@ -37,7 +37,8 @@ class Message extends PureComponent<MessageProps, any> {
       case 'image':
         return (
           <a href={this.props.messageBody.body as string}>
-            <img alt={this.props.messageBody.body as string}
+            <img className={'message-img'}
+                 alt={this.props.messageBody.body as string}
                  src={this.props.messageBody.body as string}
                  width={500}
             />
@@ -61,7 +62,6 @@ class Message extends PureComponent<MessageProps, any> {
 
   render() {
     const animProps = this.generateAnimation();
-    console.log(animProps)
     const renderedMessage = this.createMessage(this.props.messageBody);
     return (
       <Anime {...animProps}>

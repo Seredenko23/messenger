@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 import { subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
 import {MessageListProps} from "./models/MessageList";
+import {checkIfEmpty} from "../../../../../../service/utilities";
+import {Redirect} from "react-router";
 
 class MessageList extends Component<MessageListProps> {
   private readonly anchor: React.RefObject<HTMLDivElement>;
@@ -20,8 +22,10 @@ class MessageList extends Component<MessageListProps> {
     this.props.subscribeIsTyping();
   }
 
-  componentDidUpdate(): void {
-    this.scrollToBottom()
+  componentDidUpdate(prevProps: Readonly<MessageListProps>, prevState: Readonly<{}>, snapshot?: any): void {
+    if(prevProps.messages[prevProps.messages.length-1]?._id !== this.props.messages[this.props.messages.length-1]?._id) {
+      this.scrollToBottom()
+    }
   }
 
   scrollToBottom = (): void => {
@@ -32,6 +36,7 @@ class MessageList extends Component<MessageListProps> {
     const { user, messages, isTyping } = this.props
     return (
       <div className={'message-list'}>
+        {checkIfEmpty(this.props.user) && <Redirect to={'log-in'} />}
         { messages.map((message: MessageType) => {
           let type = user._id === (message.user as User)._id ? 'my' : '';
           let fullName = `${(message.user as User).firstName} ${(message.user as User).lastName}`;

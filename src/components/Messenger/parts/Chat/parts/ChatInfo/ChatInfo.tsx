@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import './ChatInfo.scss'
 import {connect} from "react-redux";
 import {ChatInfoProps} from "./models/ChatInfo";
@@ -8,15 +8,24 @@ import ThreadOut from "../../../Thread/parts/ThreadOut/ThreadOut";
 import Anime from "react-anime";
 
 interface Modal {
-  isOpen: boolean
+  isOpen: boolean;
+  mounted: boolean;
 }
 
-class ChatInfo extends Component<ChatInfoProps,Modal> {
+class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      mounted: false,
     }
+  }
+
+  componentDidMount(): void {
+    console.log(this.state.mounted, 'asd')
+    this.setState({mounted: true})
+    console.log(this.state.mounted,'fqwe')
+
   }
 
   generateFullName = (): string => {
@@ -31,31 +40,48 @@ class ChatInfo extends Component<ChatInfoProps,Modal> {
     return fullName
   };
 
+  generateAnimation = () => {
+    if(!this.state.mounted) {
+      return {}
+    } else if(!this.state.isOpen) {
+      return {
+        translateX: [0, 320],
+        duration: 500,
+        easing: "easeOutQuad"
+      }
+    } else {
+      return {
+        translateX: [-320, 0],
+        duration: 500,
+        easing: "easeOutQuad"
+      }
+    }
+  }
+
   render() {
+    const animProps = this.generateAnimation()
     return (
-        <div>
-          {this.state.isOpen && (
-              <Anime translateX={[-320,0]}>
-                <div className='thread-open'>
-                  <ThreadList>
-                    <i className="fas fa-times cancel"
-                       onClick={() => this.setState({isOpen:!this.state.isOpen})}
-                    />
-                  </ThreadList>
-                  <div className='thread-user-message__list'>
-                    <ThreadListInbox/>
-                  </div>
-                  <ThreadOut/>
-                </div>
-              </Anime>
-          )}
+      <div>
+        <Anime {...animProps} className={'mobile-thread'}>
+          <div className='thread-open'>
+            <ThreadList>
+              <i className="fas fa-times cancel"
+                 onClick={() => this.setState({isOpen: !this.state.isOpen})}
+              />
+            </ThreadList>
+            <div className='thread-user-message__list'>
+              <ThreadListInbox/>
+            </div>
+            <ThreadOut/>
+          </div>
+        </Anime>
           <div className={'chat-info'}>
             <i className="fas fa-bars burger"
-               onClick={() => this.setState({isOpen:!this.state.isOpen})}
+               onClick={() => this.setState({isOpen: !this.state.isOpen})}
             />
-        <span className={'user'}>{this.generateFullName()}</span>
+          <span className={'user'}>{this.generateFullName()}</span>
+          </div>
       </div>
-        </div>
     );
   }
 }
