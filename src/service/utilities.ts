@@ -31,7 +31,7 @@ export const getYoutubeUrlId = (url: string): string => {
 }
 
 const validateImageUrl = (url: string): boolean => {
-  const pattern = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+  const pattern = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|svg))/;
   return pattern.test(url);
 }
 

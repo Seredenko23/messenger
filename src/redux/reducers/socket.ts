@@ -21,9 +21,10 @@ export const Socket: Reducer<SocketState, SocketActions> =
   (state = initialState, action: any) => {
   switch (action.type) {
     case NEW_MESSAGE:
+      console.log(action);
       return {...state, messages: [ ...state.messages, action.payload ]};
     case ALL_MESSAGE:
-      return {...state, messages: [ ...action.payload ]};
+      return {...state, messages: [ ...action.payload.messages ]};
     case GET_TYPING:
       return {...state, isTyping: action.payload};
     case GET_SEARCHABLE_USER:

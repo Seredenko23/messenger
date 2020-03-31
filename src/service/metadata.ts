@@ -5,6 +5,7 @@ export const extractMetadataFromUrl = async (url: string): Promise<any> => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': sessionStorage.getItem('token') as string
     },
     body: JSON.stringify({url: url}),
   })
