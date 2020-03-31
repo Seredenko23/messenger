@@ -4,7 +4,7 @@ import ThreadList from "./parts/ThreadList/ThreadList";
 import ThreadOut from "./parts/ThreadOut/ThreadOut";
 import ThreadListInbox from "./parts/ThreadListInbox/ThreadListInbox";
 
-class Thread extends Component {
+class Thread extends Component<any,any> {
     render() {
         return (
             <div className='thread'>

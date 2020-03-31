@@ -6,21 +6,42 @@
   justify-content: flex-start;
   width: 100%;
   padding: 15px;
-  .thread-user__name-message {
-    display: flex;
-    flex-direction: column;
+  @media screen and (max-width: 480px){
+    & {
+      padding: 15px 5px;
+    }
+  }
+  @media screen and (max-width: 320px){
+    & {
+      padding: 15px 15px;
+    }
   }
 
   .thread-user__name {
-    color: white;
-    font-size: 20px;
-    margin-bottom: 5px;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+    @media screen and (max-width: 768px){
+      & {
+       font-size:16px;
+      }
+    }
+    @media screen and (max-width: 320px){
+      & {
+        font-size:20px;
+      }
+    }
   }
 
   .thread-user__message {
     height: 5vh;
     overflow: hidden;
     color: #8b89b2;
+  }
+
+  .thread-user__wrapper:hover {
+    cursor:pointer;
+    background: radial-gradient(at top left, #351c6f, #624fbf);
   }
 }
 
@@ -31,5 +52,3 @@
 .user-img {
   margin-right: 10px;
 }
-
-
