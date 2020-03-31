@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import {User} from "../../../../../../models/user";
 import {bindActionCreators, Dispatch} from "redux";
 import {logOut} from "../../../../../../redux/actions/login";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   user: User;
@@ -22,7 +24,7 @@ class ThreadOut extends Component<Props> {
       <div>
         <div className='thread-logout'>
           <div>{`${firstName} ${lastName}`}</div>
-          <i className="fas fa-sign-out-alt cursor-pointer"
+          <FontAwesomeIcon icon={faSignOutAlt} className="cursor-pointer"
              onClick={this.clickHandler}
           />
         </div>

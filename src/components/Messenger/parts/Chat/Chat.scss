@@ -3,6 +3,7 @@
 .chat {
   height: 100%;
   width: 70%;
+  z-index: 1;
   background-color: $chatBackground;
   color: $messageTextColor;
   @media screen and (max-width: 320px) {

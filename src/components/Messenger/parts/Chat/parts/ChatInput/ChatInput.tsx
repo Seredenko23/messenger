@@ -7,6 +7,8 @@ import MicRecorder from "mic-recorder-to-mp3"
 import {getType} from "../../../../../../service/utilities";
 import './ChatInput.scss'
 import {ChatInputProps, ChatInputState} from "./models/ChatInput";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMicrophone, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 class ChatInput extends Component<ChatInputProps, ChatInputState> {
   Recorder = new MicRecorder({ bitRate: 128 });
@@ -103,14 +105,14 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
         {
           this.state.messageBody ? (
             <button className={'chat-btn'}>
-              =>
+               <FontAwesomeIcon icon={faArrowRight}/>
             </button>
           ) : (
             <button className={`chat-btn ${this.state.isRecording ? 'active' : 'unactive'}`}
                     type={'button'}
                     onClick={this.record}
             >
-              M
+              <FontAwesomeIcon icon={faMicrophone}/>
             </button>
           )
         }
