@@ -7,18 +7,20 @@
   border: 1px solid $textColor;
   color: $textColor;
   cursor: pointer;
+  &.my {
+    border: 1px solid $secondaryBgColor;
+    color: $secondaryBgColor;
+  }
+  .link-preview-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 5px;
+  }
 }
 
-.link-preview-wrapper.my {
-  border: 1px solid $secondaryBgColor;
-  color: $secondaryBgColor;
-}
 
-.link-preview-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 0 5px;
-}
+
+
 
 

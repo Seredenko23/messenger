@@ -6,3 +6,4 @@ export interface MessageProps {
   messageBody: MessageBody;
   createdAt: string;
 }
+

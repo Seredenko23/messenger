@@ -1,7 +1,7 @@
 import {BASE_URL} from "../config/config";
 import {User} from "../models/user";
 
-export const regUser: (userData: User) => Promise<User> = async (userData) => {
+export async function regUser(userData: User): Promise<User> {
   let response: Response = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {
@@ -9,7 +9,6 @@ export const regUser: (userData: User) => Promise<User> = async (userData) => {
     },
     body: JSON.stringify(userData),
   });
-  if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
-  console.log(response.json());
+  if(response.status >= 400 && response.status <= 600) throw Error(await response.json());
   return await response.json()
 };

@@ -9,9 +9,6 @@ class Navigation extends Component {
   render() {
     return (
       <BrowserRouter>
-        <nav>
-          {/*Here will be navigation bar*/}
-        </nav>
         <Switch>
           <Route path={'/sign-up'}>
             <SignUp/>

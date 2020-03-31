@@ -5,7 +5,8 @@ import {ChatInfoProps} from "./models/ChatInfo";
 
 
 class ChatInfo extends Component<ChatInfoProps> {
-  generateFullName = () => {
+
+  generateFullName = (): string => {
     let fullName: string;
     if(this.props.currentThread.users) {
       fullName = this.props.user._id === this.props.currentThread.users[0]._id ?
@@ -16,6 +17,7 @@ class ChatInfo extends Component<ChatInfoProps> {
     }
     return fullName
   }
+
   render() {
     return (
       <div className={'chat-info'}>

@@ -1,4 +1,4 @@
-export const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+export const b64toBlob = (b64Data, contentType='', sliceSize=512): Blob => {
   const byteCharacters: string = atob(b64Data);
   const byteArrays: Uint8Array[] = [];
 
@@ -21,7 +21,7 @@ export const calculateTime = (totalDuration: number, currentTime: number): numbe
   return (100*currentTime)/totalDuration
 }
 
-export const checkIfEmpty = (obj: Object) => {
+export const checkIfEmpty = (obj: Object): boolean => {
   return !Object.keys(obj).length
 }
 
@@ -31,7 +31,7 @@ export const getYoutubeUrlId = (url: string): string => {
 }
 
 const validateImageUrl = (url: string): boolean => {
-  const pattern = /(http(s?):)([/|.|\w|\s|*-])*\.(?:jpg|gif|png|jpeg)/;
+  const pattern = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
   return pattern.test(url);
 }
 

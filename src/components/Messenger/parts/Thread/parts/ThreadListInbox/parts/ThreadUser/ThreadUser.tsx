@@ -7,7 +7,7 @@ import {ThreadUserProps} from "./models/ThreadUser";
 
 class ThreadUser extends Component<ThreadUserProps> {
   updateMessage = () => {
-    this.props.getAllMessage(this.props.thread)
+    this.props.getAllMessage(this.props.thread);
   }
 
   render() {
