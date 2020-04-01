@@ -8,17 +8,21 @@ import {getType} from "../../../../../../service/utilities";
 import './ChatInput.scss'
 import {ChatInputProps, ChatInputState} from "./models/ChatInput";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMicrophone, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {faMicrophone, faArrowRight, faFileImage} from "@fortawesome/free-solid-svg-icons";
 
 class ChatInput extends Component<ChatInputProps, ChatInputState> {
   Recorder: MicRecorder = new MicRecorder({ bitRate: 128 });
   timer: number | undefined;
+  private fileInput: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
     this.state = {
       messageBody: '',
       isRecording: false,
       isBlocked: false,
+      file: null,
     }
   }
 
@@ -93,15 +97,51 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     this.props.sendMessage(message)
   };
 
+  handleOnFileChange = (e) => {
+    let file = e.target.files[0];
+    console.log(file);
+    this.setState({
+      file: file
+    })
+  }
+
+  clearFile = () => {
+    this.setState({
+      file: null
+    })
+  }
+
   render() {
     return (
       <form className={'input-wrapper'} onSubmit={this.handleSubmit}>
-        <textarea className={'message-input'}
-                  placeholder={'Type something...'}
-                  value={this.state.messageBody}
-                  onChange={this.handleChange}
-                  onKeyDown={this.handleOnKeyDown}
-        />
+        <label className={'file-input-label'} >
+          <FontAwesomeIcon icon={faFileImage}/>
+          <input type={'file'}
+                 className={'file-input'}
+                 name={'file'}
+                 ref={this.fileInput}
+                 onChange={this.handleOnFileChange}
+          />
+        </label>
+        {
+          this.state.file ? (
+            <div className={'file'}>
+              {this.state.file.name}
+              <div className={'clear-file'}
+                   onClick={this.clearFile}
+              >
+                X
+              </div>
+            </div>
+          ) : (
+            <textarea className={'message-input'}
+                      placeholder={'Type something...'}
+                      value={this.state.messageBody}
+                      onChange={this.handleChange}
+                      onKeyDown={this.handleOnKeyDown}
+            />
+          )
+        }
         {
           this.state.messageBody ? (
             <button className={'chat-btn'}>

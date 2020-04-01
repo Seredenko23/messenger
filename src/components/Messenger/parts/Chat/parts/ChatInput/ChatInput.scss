@@ -9,6 +9,39 @@
   height: 64px;
   width: 100%;
   background-color: $secondaryBgColor;
+  .file-input-label {
+    display: flex;
+    height: 100%;
+    width: 62px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 0;
+    transition: 0.2s ease;
+  }
+  .file {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    .clear-file {
+      background-color: #ff0000;
+      color: white;
+      padding: 0 5px;
+      margin-left: 5px;
+      &:hover {
+        transition: 0.2s ease;
+        background-color: #cf1717;
+      }
+    }
+  }
+  .file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
   .message-input {
     height: 22px;
     width: 100%;
