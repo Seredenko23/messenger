@@ -6,6 +6,7 @@ export async function createMessage(threadId:string, messageBody:string): Promis
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem('token') as string
         },
         body: JSON.stringify({thread: threadId, message: messageBody}),
     });
@@ -16,7 +17,13 @@ export async function createMessage(threadId:string, messageBody:string): Promis
 }
 
 export async function getMessageByThreadId(threadId: string): Promise<Message> {
-    let response: Response = await fetch(`${BASE_URL}/message/${threadId}`);
+    let response: Response = await fetch(`${BASE_URL}/message/${threadId}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem('token') as string
+        },
+    });
 
     if(response.status >= 400 && response.status <= 600) throw Error('Bad response');
 
@@ -28,6 +35,7 @@ export async function deleteMessage(_id: string): Promise<void> {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem('token') as string
         },
     })
 }

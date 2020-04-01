@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import './ChatInfo.scss'
 import {connect} from "react-redux";
 import {ChatInfoProps} from "./models/ChatInfo";
@@ -8,53 +8,82 @@ import ThreadOut from "../../../Thread/parts/ThreadOut/ThreadOut";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes, faBars} from "@fortawesome/free-solid-svg-icons";
 import Anime from "react-anime";
+
 interface Modal {
-  isOpen: boolean
+  isOpen: boolean;
+  mounted: boolean;
 }
 
-class ChatInfo extends Component<ChatInfoProps,Modal> {
+class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      mounted: false,
     }
   }
-  generateFullName = () => {
+
+  componentDidMount(): void {
+    console.log(this.state.mounted, 'asd')
+    this.setState({mounted: true})
+    console.log(this.state.mounted,'fqwe')
+
+  }
+
+  generateFullName = (): string => {
     let fullName: string;
     if(this.props.currentThread.users) {
       fullName = this.props.user._id === this.props.currentThread.users[0]._id ?
         `${this.props.currentThread.users[1].firstName} ${this.props.currentThread.users[1].lastName}`
         : `${this.props.currentThread.users[0].firstName} ${this.props.currentThread.users[0].lastName}`;
     } else {
-      fullName = '';
+      fullName = ''
     }
     return fullName
   };
+
+  generateAnimation = () => {
+    if(!this.state.mounted) {
+      return {}
+    } else if(!this.state.isOpen) {
+      return {
+        translateX: [0, 320],
+        duration: 500,
+        easing: "easeOutQuad"
+      }
+    } else {
+      return {
+        translateX: [-320, 0],
+        duration: 500,
+        easing: "easeOutQuad"
+      }
+    }
+  }
+
   render() {
+    const animProps = this.generateAnimation()
     return (
-        <div>
-          {this.state.isOpen && (
-              <Anime translateX={[-500,1]} >
-                <div className='thread-open'>
-                  <ThreadList>
-                    <FontAwesomeIcon icon={faTimes} className={'cancel'}
+      <div>
+        <Anime {...animProps} className={'mobile-thread'}>
+          <div className='thread-open'>
+            <ThreadList>
+              <FontAwesomeIcon icon={faTimes} className={'cancel'}
                        onClick={() => this.setState({isOpen:!this.state.isOpen})}
-                    />
-                  </ThreadList>
-                  <div className='thread-user-message__list'>
-                    <ThreadListInbox/>
-                  </div>
-                  <ThreadOut/>
-                </div>
-              </Anime>
-          )}
+              />
+            </ThreadList>
+            <div className='thread-user-message__list'>
+              <ThreadListInbox/>
+            </div>
+            <ThreadOut/>
+          </div>
+        </Anime>
           <div className={'chat-info'}>
             <FontAwesomeIcon icon={faBars}  className="burger"
                onClick={() => this.setState({isOpen:!this.state.isOpen})}
             />
-        <span className={'user'}>{this.generateFullName()}</span>
+          <span className={'user'}>{this.generateFullName()}</span>
+          </div>
       </div>
-        </div>
     );
   }
 }

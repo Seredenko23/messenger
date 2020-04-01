@@ -18,7 +18,7 @@ class AudioPlayer extends Component<AudioPlayerProps, AudioPlayerState> {
     if(this.audio.current) this.audio.current.play()
   };
 
-  handleLoadData = event => {
+  handleLoadData = (event) => {
     console.log(event.currentTarget)
     this.setState({
       totalDuration: event.currentTarget.duration
@@ -26,7 +26,7 @@ class AudioPlayer extends Component<AudioPlayerProps, AudioPlayerState> {
   }
 
   handleUpdateTime = () => {
-    const node = this.audio.current;
+    const node: HTMLAudioElement = this.audio.current as HTMLAudioElement;
     if(node) {
       const percent = calculateTime(this.state.totalDuration, node.currentTime)
       this.setState({

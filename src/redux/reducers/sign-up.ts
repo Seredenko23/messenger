@@ -9,10 +9,11 @@ import { Reducer } from "redux";
 import { RegisterState } from "./types/RegisterState";
 
 const initialState: RegisterState = {
-  registerIsPending: false
+  registerIsPending: false,
+  error: null
 };
 
-export const signUp: Reducer<RegisterState, RegisterActions> = (state=initialState, action) => {
+export const signUp: Reducer<RegisterState> = (state=initialState, action) => {
   switch (action.type) {
     case REGISTER_PENDING:
       return {
@@ -27,7 +28,8 @@ export const signUp: Reducer<RegisterState, RegisterActions> = (state=initialSta
     case REGISTER_SUCCESS:
       return {
         ...state,
-        registerIsPending: action.payload
+        registerIsPending: action.payload.isPending,
+        error: action.payload.error
       };
     default:
       return state;

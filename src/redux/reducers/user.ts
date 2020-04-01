@@ -17,6 +17,7 @@ const initialState: LoginState = {
 };
 
 export const userReducer: Reducer<LoginState> = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {

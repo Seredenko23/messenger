@@ -10,7 +10,7 @@ class FormInput extends Component<FormInputProps, FormInputState> {
     }
   }
 
-  blurHandler = () => {
+  blurHandler = (): void => {
     this.setState({
       dirty:true
     })

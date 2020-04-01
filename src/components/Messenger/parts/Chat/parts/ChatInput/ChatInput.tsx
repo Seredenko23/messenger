@@ -11,7 +11,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMicrophone, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 class ChatInput extends Component<ChatInputProps, ChatInputState> {
-  Recorder = new MicRecorder({ bitRate: 128 });
+  Recorder: MicRecorder = new MicRecorder({ bitRate: 128 });
   timer: number | undefined;
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     );
   }
 
-  record = () => {
+  record = (): void => {
     if (this.state.isBlocked) console.log('Permission Denied');
     if(!this.state.isRecording) {
       this.Recorder.start()
@@ -48,7 +48,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
         .getMp3()
         .then(async ([buffer ,blob]) => {
           const message: Message = {
-            threadId: this.props.threadId,
+            threadId: this.props.currentThread._id,
             user: this.props.user._id,
             messageBody: {
               body: blob,
@@ -68,7 +68,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     })
   };
 
-  handleOnKeyDown = () => {
+  handleOnKeyDown = (): void => {
     this.props.setIsTyping(true);
     clearTimeout(this.timer);
     this.timer = window.setTimeout(() => {
@@ -76,14 +76,14 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
     }, 3000)
   }
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if(this.timer) {
       clearTimeout(this.timer)
       this.props.setIsTyping(false)
     }
     const message: Message = {
-      threadId: this.props.threadId,
+      threadId: this.props.currentThread._id,
       user: this.props.user._id,
       messageBody: {
         body: this.state.messageBody,
@@ -123,7 +123,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
 
 const mapStateToProps = (state) => {
   return {
-    threadId: state.threadReducer.threadId,
+    currentThread: state.threadReducer.currentThread,
     user: state.userReducer.user,
     isTyping: state.Socket.isTyping
   }

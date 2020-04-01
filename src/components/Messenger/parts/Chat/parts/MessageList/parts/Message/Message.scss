@@ -17,5 +17,19 @@
     background-color: $secondaryBgColor;
     border-radius: 3px;
     color: $textColor;
+    &-img {
+      width: 500px;
+      @media screen and (max-width: 720px) {
+        & {
+          width: 400px;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        & {
+          width: 250px;
+        }
+      }
+
+    }
   }
 }

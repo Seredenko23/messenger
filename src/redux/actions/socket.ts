@@ -45,14 +45,20 @@ export const sendMessage: ActionCreator<SocketAction> = (message: Message) => {
   return {
     event: "message",
     emit: true,
-    payload: message
+    payload: {
+      message: message,
+      token: sessionStorage.getItem('token')
+    }
   }
 };
 
 export const allMessage: ActionCreator<Action> = (messages: Message[]) => {
   return {
     type: ALL_MESSAGE,
-    payload: messages
+    payload: {
+      messages: messages,
+      token: sessionStorage.getItem('token')
+    }
   }
 }
 
@@ -60,7 +66,10 @@ export const changeRoom: ActionCreator<SocketAction> = (threadId: string) => {
   return {
     event: "join",
     emit: true,
-    payload: threadId,
+    payload: {
+      threadId: threadId,
+      token: sessionStorage.getItem('token')
+    },
   }
 }
 
@@ -69,15 +78,21 @@ export const setIsTyping: ActionCreator<SocketAction> = (isTyping: boolean) => {
   return {
     event: 'typing',
     emit: true,
-    payload: isTyping
+    payload: {
+      isTyping: isTyping,
+      token: sessionStorage.getItem('token')
+    }
   }
 }
 
-export const getSearchableUser: ActionCreator<SocketAction> = (searchStr) => {
+export const getSearchableUser: ActionCreator<SocketAction> = (searchStr: string) => {
   return {
     event: "search",
     emit: true,
-    payload: searchStr
+    payload: {
+      searchStr: searchStr,
+      token: sessionStorage.getItem('token')
+    }
   }
 };
 
