@@ -7,6 +7,7 @@
   padding: 0 30px;
   height: 64px;
   background-color: $buttonColor;
+  z-index: 1;
   .user {
     font-size: 20px;
     color:#FEFDFE;
@@ -18,9 +19,9 @@
   }
 }
 
+
 .thread-open {
   display: block;
-  position: absolute;
   width: 100%;
   background-color: #3E3C61;
   height: 100%;

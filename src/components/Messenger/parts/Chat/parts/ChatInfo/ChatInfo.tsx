@@ -5,6 +5,8 @@ import {ChatInfoProps} from "./models/ChatInfo";
 import ThreadList from "../../../Thread/parts/ThreadList/ThreadList";
 import ThreadListInbox from "../../../Thread/parts/ThreadListInbox/ThreadListInbox";
 import ThreadOut from "../../../Thread/parts/ThreadOut/ThreadOut";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes, faBars} from "@fortawesome/free-solid-svg-icons";
 import Anime from "react-anime";
 
 interface Modal {
@@ -65,8 +67,8 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
         <Anime {...animProps} className={'mobile-thread'}>
           <div className='thread-open'>
             <ThreadList>
-              <i className="fas fa-times cancel"
-                 onClick={() => this.setState({isOpen: !this.state.isOpen})}
+              <FontAwesomeIcon icon={faTimes} className={'cancel'}
+                       onClick={() => this.setState({isOpen:!this.state.isOpen})}
               />
             </ThreadList>
             <div className='thread-user-message__list'>
@@ -76,8 +78,8 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
           </div>
         </Anime>
           <div className={'chat-info'}>
-            <i className="fas fa-bars burger"
-               onClick={() => this.setState({isOpen: !this.state.isOpen})}
+            <FontAwesomeIcon icon={faBars}  className="burger"
+               onClick={() => this.setState({isOpen:!this.state.isOpen})}
             />
           <span className={'user'}>{this.generateFullName()}</span>
           </div>

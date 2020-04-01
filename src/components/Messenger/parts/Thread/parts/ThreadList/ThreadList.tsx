@@ -4,6 +4,8 @@ import {bindActionCreators, Dispatch} from "redux";
 import {clearSearchableUser, getSearchableUser, subscribeSearchableUser, setIsEmpty} from "../../../../../../redux/actions/socket";
 import {connect} from "react-redux";
 import {ThreadListProps, ThreadListState} from "./models/ThreadList";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
 class ThreadList extends Component<ThreadListProps, ThreadListState> {
   constructor(props) {
@@ -35,7 +37,7 @@ class ThreadList extends Component<ThreadListProps, ThreadListState> {
     return (
       <div>
         <div className='thread-search'>
-          <i className="fas fa-search thread-search-icon"/>
+          <FontAwesomeIcon icon={faSearch} className="thread-search-icon"/>
           <input type="text"
                  className='input-search'
                  placeholder='Seacrh'
