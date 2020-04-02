@@ -45,12 +45,28 @@ const validateYoutubeUrl = (url: string): boolean => {
   return pattern.test(url)
 }
 
-export const getType = (content: string): string => {
-  if(validateYoutubeUrl(content)) {
+export interface FileReq {
+  name: string,
+  file: File,
+  type: string,
+}
+
+export const createFileObj = (file: File) : FileReq => {
+  return {
+    name: file.name,
+    file: file,
+    type: file.type,
+  }
+}
+
+export const getType = (content: string | File): string => {
+  if(typeof content === 'object') {
+    return 'file'
+  } else if(validateYoutubeUrl(content as string)) {
     return 'youtube'
-  } else if(validateImageUrl(content)) {
+  } else if(validateImageUrl(content as string)) {
     return 'image'
-  } else if(validateUrl(content)){
+  } else if(validateUrl(content as string)){
     return 'url'
   } else {
     return 'text'

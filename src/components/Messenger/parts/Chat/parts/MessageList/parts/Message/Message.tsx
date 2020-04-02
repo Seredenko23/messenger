@@ -1,7 +1,7 @@
 import React, {Component, PureComponent} from 'react';
 import './Message.scss'
 import {MessageBody} from "../../../../../../../../models/MessageBody";
-import {b64toBlob, getYoutubeUrlId} from "../../../../../../../../service/utilities";
+import {b64toBlob, FileReq, getYoutubeUrlId} from "../../../../../../../../service/utilities";
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Youtube from "react-youtube"
 import moment from 'moment'
@@ -30,25 +30,30 @@ class Message extends PureComponent<MessageProps, any> {
       case 'youtube':
         return (
           <Youtube
-            videoId={getYoutubeUrlId(this.props.messageBody.body as string)}
+            videoId={getYoutubeUrlId(messageBody.body as string)}
             opts={youtubeOpt}
           />
         )
       case 'image':
         return (
-          <a href={this.props.messageBody.body as string}>
+          <a href={messageBody.body as string}>
             <img className={'message-img'}
-                 alt={this.props.messageBody.body as string}
-                 src={this.props.messageBody.body as string}
+                 alt={messageBody.body as string}
+                 src={messageBody.body as string}
                  width={500}
             />
           </a>
         )
       case 'url':
         return (
-          <LinkPreview url={this.props.messageBody.body as string}
+          <LinkPreview url={messageBody.body as string}
                        type={this.props.type as string}
           />
+        )
+      case 'file':
+        let file = b64toBlob((messageBody.body as FileReq).file, (messageBody.body as FileReq).type)
+        return (
+          <a href={URL.createObjectURL(file)}>{(messageBody.body as FileReq).name}</a>
         )
     }
   };

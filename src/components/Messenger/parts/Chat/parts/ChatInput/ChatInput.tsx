@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import {sendMessage, setIsTyping} from "../../../../../../redux/actions/socket";
 import { Message } from "../../../../../../models/messages";
 import MicRecorder from "mic-recorder-to-mp3"
-import {getType} from "../../../../../../service/utilities";
+import {createFileObj, FileReq, getType} from "../../../../../../service/utilities";
 import './ChatInput.scss'
 import {ChatInputProps, ChatInputState} from "./models/ChatInput";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -86,12 +86,13 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
       clearTimeout(this.timer)
       this.props.setIsTyping(false)
     }
+    const body: FileReq | string | Blob = this.state.file ? createFileObj(this.state.file) : this.state.messageBody;
     const message: Message = {
       threadId: this.props.currentThread._id,
       user: this.props.user._id,
       messageBody: {
-        body: this.state.messageBody,
-        type: getType(this.state.messageBody)
+        body: body,
+        type: getType(body as string)
       }
     };
     this.props.sendMessage(message)
@@ -99,7 +100,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
 
   handleOnFileChange = (e) => {
     let file = e.target.files[0];
-    console.log(file);
+    console.log(typeof file);
     this.setState({
       file: file
     })
@@ -143,7 +144,7 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
           )
         }
         {
-          this.state.messageBody ? (
+          this.state.messageBody || this.state.file ? (
             <button className={'chat-btn'}>
                <FontAwesomeIcon icon={faArrowRight}/>
             </button>
