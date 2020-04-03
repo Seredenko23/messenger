@@ -9,6 +9,7 @@ import {youtubeOpt} from "../../../../../../../../config/config";
 import LinkPreview from "../LinkPreview/LinkPreview";
 import {MessageProps} from "./models/Message";
 import Anime from "react-anime";
+import DownloadLink from "../DownloadLink/DownloadLink";
 
 class Message extends PureComponent<MessageProps, any> {
   constructor(props) {
@@ -51,9 +52,10 @@ class Message extends PureComponent<MessageProps, any> {
           />
         )
       case 'file':
+        console.log(messageBody.body)
         let file = b64toBlob((messageBody.body as FileReq).file, (messageBody.body as FileReq).type)
         return (
-          <a href={URL.createObjectURL(file)}>{(messageBody.body as FileReq).name}</a>
+          <DownloadLink href={URL.createObjectURL(file)} file={this.props.messageBody.body as FileReq}/>
         )
     }
   };

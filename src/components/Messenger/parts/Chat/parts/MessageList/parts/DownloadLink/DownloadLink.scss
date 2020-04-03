@@ -1,0 +1,19 @@
+.download-link-wrapper {
+  margin: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  .download-icon {
+    font-size: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .download-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+
