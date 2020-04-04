@@ -1,4 +1,6 @@
+import {FileReq} from "../service/utilities";
+
 export interface MessageBody {
-  body: string | Blob;
+  body: string | Blob | FileReq;
   type: string;
 }

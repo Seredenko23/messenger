@@ -4,21 +4,25 @@ import { bindActionCreators, Dispatch } from "redux";
 import {sendMessage, setIsTyping} from "../../../../../../redux/actions/socket";
 import { Message } from "../../../../../../models/messages";
 import MicRecorder from "mic-recorder-to-mp3"
-import {getType} from "../../../../../../service/utilities";
+import {createFileObj, FileReq, getType} from "../../../../../../service/utilities";
 import './ChatInput.scss'
 import {ChatInputProps, ChatInputState} from "./models/ChatInput";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMicrophone, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {faMicrophone, faArrowRight, faFileImage} from "@fortawesome/free-solid-svg-icons";
 
 class ChatInput extends Component<ChatInputProps, ChatInputState> {
   Recorder: MicRecorder = new MicRecorder({ bitRate: 128 });
   timer: number | undefined;
+  private fileInput: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
     this.state = {
       messageBody: '',
       isRecording: false,
       isBlocked: false,
+      file: null,
     }
   }
 
@@ -82,28 +86,65 @@ class ChatInput extends Component<ChatInputProps, ChatInputState> {
       clearTimeout(this.timer)
       this.props.setIsTyping(false)
     }
+    const body: FileReq | string | Blob = this.state.file ? createFileObj(this.state.file) : this.state.messageBody;
     const message: Message = {
       threadId: this.props.currentThread._id,
       user: this.props.user._id,
       messageBody: {
-        body: this.state.messageBody,
-        type: getType(this.state.messageBody)
+        body: body,
+        type: getType(body as string)
       }
     };
     this.props.sendMessage(message)
   };
 
+  handleOnFileChange = (e) => {
+    let file = e.target.files[0];
+    console.log(typeof file);
+    this.setState({
+      file: file
+    })
+  }
+
+  clearFile = () => {
+    this.setState({
+      file: null
+    })
+  }
+
   render() {
     return (
       <form className={'input-wrapper'} onSubmit={this.handleSubmit}>
-        <textarea className={'message-input'}
-                  placeholder={'Type something...'}
-                  value={this.state.messageBody}
-                  onChange={this.handleChange}
-                  onKeyDown={this.handleOnKeyDown}
-        />
+        <label className={'file-input-label'} >
+          <FontAwesomeIcon icon={faFileImage}/>
+          <input type={'file'}
+                 className={'file-input'}
+                 name={'file'}
+                 ref={this.fileInput}
+                 onChange={this.handleOnFileChange}
+          />
+        </label>
         {
-          this.state.messageBody ? (
+          this.state.file ? (
+            <div className={'file'}>
+              {this.state.file.name}
+              <div className={'clear-file'}
+                   onClick={this.clearFile}
+              >
+                X
+              </div>
+            </div>
+          ) : (
+            <textarea className={'message-input'}
+                      placeholder={'Type something...'}
+                      value={this.state.messageBody}
+                      onChange={this.handleChange}
+                      onKeyDown={this.handleOnKeyDown}
+            />
+          )
+        }
+        {
+          this.state.messageBody || this.state.file ? (
             <button className={'chat-btn'}>
                <FontAwesomeIcon icon={faArrowRight}/>
             </button>

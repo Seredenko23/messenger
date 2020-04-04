@@ -1,7 +1,7 @@
 import React, {Component, PureComponent} from 'react';
 import './Message.scss'
 import {MessageBody} from "../../../../../../../../models/MessageBody";
-import {b64toBlob, getYoutubeUrlId} from "../../../../../../../../service/utilities";
+import {b64toBlob, FileReq, getYoutubeUrlId} from "../../../../../../../../service/utilities";
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Youtube from "react-youtube"
 import moment from 'moment'
@@ -9,6 +9,7 @@ import {youtubeOpt} from "../../../../../../../../config/config";
 import LinkPreview from "../LinkPreview/LinkPreview";
 import {MessageProps} from "./models/Message";
 import Anime from "react-anime";
+import DownloadLink from "../DownloadLink/DownloadLink";
 
 class Message extends PureComponent<MessageProps, any> {
   constructor(props) {
@@ -30,25 +31,31 @@ class Message extends PureComponent<MessageProps, any> {
       case 'youtube':
         return (
           <Youtube
-            videoId={getYoutubeUrlId(this.props.messageBody.body as string)}
+            videoId={getYoutubeUrlId(messageBody.body as string)}
             opts={youtubeOpt}
           />
         )
       case 'image':
         return (
-          <a href={this.props.messageBody.body as string}>
+          <a href={messageBody.body as string}>
             <img className={'message-img'}
-                 alt={this.props.messageBody.body as string}
-                 src={this.props.messageBody.body as string}
+                 alt={messageBody.body as string}
+                 src={messageBody.body as string}
                  width={500}
             />
           </a>
         )
       case 'url':
         return (
-          <LinkPreview url={this.props.messageBody.body as string}
+          <LinkPreview url={messageBody.body as string}
                        type={this.props.type as string}
           />
+        )
+      case 'file':
+        console.log(messageBody.body)
+        let file = b64toBlob((messageBody.body as FileReq).file, (messageBody.body as FileReq).type)
+        return (
+          <DownloadLink href={URL.createObjectURL(file)} file={this.props.messageBody.body as FileReq}/>
         )
     }
   };
