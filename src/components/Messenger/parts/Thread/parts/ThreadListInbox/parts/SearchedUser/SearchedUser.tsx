@@ -7,9 +7,9 @@ import { setIsEmpty } from "../../../../../../../../redux/actions/socket";
 import {SearchedUserProps} from "./models/SearchedUser";
 
 class SearchedUser extends Component<SearchedUserProps> {
-  clickHandler = () => {
-    this.props.createNewThread(this.props.searchedUser._id, this.props.user._id)
-    this.props.setIsEmpty(true)
+  clickHandler = async () => {
+    await this.props.createNewThread(this.props.searchedUser._id, this.props.user._id)
+    await this.props.setIsEmpty(true)
     this.props.getThreads(this.props.user._id)
   }
 

@@ -6,6 +6,7 @@ export interface LoginFormProps {
   history: string[];
   user: User;
   error: Error;
+  isPending: boolean;
 }
 
 export interface LoginFormState {

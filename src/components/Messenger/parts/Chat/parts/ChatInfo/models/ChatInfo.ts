@@ -3,5 +3,6 @@ import {User} from "../../../../../../../models/user";
 
 export interface ChatInfoProps {
   currentThread: Thread,
-  user: User
+  isPending: boolean,
+  user: User,
 }

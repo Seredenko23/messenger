@@ -6,4 +6,5 @@ export interface SocketState {
   searchableUsers: User[]
   isTyping: boolean;
   isEmpty: boolean;
+  allMessageIsPending: boolean;
 }

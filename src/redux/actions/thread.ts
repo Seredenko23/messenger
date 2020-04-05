@@ -8,7 +8,6 @@ export const THREAD_SUCCESS: string = 'ACTION_THREAD_SUCCESS';
 export const THREAD_ERROR: string = 'ACTION_THREAD_ERROR';
 export const CHANGE_CURRENT_THREAD: string = 'ACTION_CHANGE_CURRENT_THREAD';
 
-
 const threadPending: ActionCreator<Action> = () => {
   return {
     type: THREAD_PENDING,
