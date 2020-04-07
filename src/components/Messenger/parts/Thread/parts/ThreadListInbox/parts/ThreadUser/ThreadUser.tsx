@@ -24,9 +24,6 @@ import {ThreadUserProps} from "./models/ThreadUser";
                       : `${thread.users[0].firstName} ${thread.users[0].lastName}`
                     }
                   </div>
-                  <div className='thread-user__message'>
-                    {"PLACEHOLDER"}
-                  </div>
                 </div>
             </div>
           </div>

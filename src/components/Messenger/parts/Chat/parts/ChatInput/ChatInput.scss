@@ -11,18 +11,24 @@
   background-color: $secondaryBgColor;
   .file-input-label {
     display: flex;
+    color: black;
     height: 100%;
     width: 62px;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
+    cursor: pointer;
     padding: 0;
     transition: 0.2s ease;
+    &:hover {
+      background-color: $messageColor;
+    }
   }
   .file {
     display: flex;
     flex-direction: row;
     color: black;
+    font-size: 24px;
     .clear-file {
       background-color: #ff0000;
       color: white;
@@ -44,16 +50,18 @@
   }
   .message-input {
     height: 22px;
-    width: 100%;
+    width: calc(100% - 124px);
     outline: none;
     border: none;
-    padding: 0 30px;
+    padding: 0 15px;
     font-size: 12pt;
     resize: none;
   }
   .chat-btn {
     height: 100%;
     width: 62px;
+    font-size: 18px;
+    cursor: pointer;
     outline: none;
     border: none;
     background-color: $secondaryBgColor;

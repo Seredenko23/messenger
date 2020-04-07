@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import './ChatInfo.scss'
 import {connect} from "react-redux";
 import {ChatInfoProps} from "./models/ChatInfo";
@@ -25,10 +25,7 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
   }
 
   componentDidMount(): void {
-    console.log(this.state.mounted, 'asd')
     this.setState({mounted: true})
-    console.log(this.state.mounted,'fqwe')
-
   }
 
   generateFullName = (): string => {
@@ -50,13 +47,15 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
       return {
         translateX: [0, 320],
         duration: 500,
-        easing: "easeOutQuad"
+        easing: "easeOutQuad",
+        complete: () => {this.setState({mounted: true})}
       }
     } else {
       return {
         translateX: [-320, 0],
         duration: 500,
-        easing: "easeOutQuad"
+        easing: "easeOutQuad",
+        complete: () => {this.setState({mounted: false})}
       }
     }
   }
@@ -69,15 +68,15 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
           <div className='thread-open'>
             <ThreadList>
               <FontAwesomeIcon icon={faTimes} className={'cancel'}
-                       onClick={() => this.setState({isOpen:!this.state.isOpen})}
+                               onClick={() => this.setState({isOpen:!this.state.isOpen, mounted: true})}
               />
-            </ThreadList>
-            <div className='thread-user-message__list'>
-              <ThreadListInbox/>
+              </ThreadList>
+              <div className='thread-user-message__list'>
+                <ThreadListInbox/>
+              </div>
+              <ThreadOut/>
             </div>
-            <ThreadOut/>
-          </div>
-        </Anime>
+          </Anime>
           <div className={'chat-info'}>
             <FontAwesomeIcon icon={faBars}  className="burger"
                onClick={() => this.setState({isOpen:!this.state.isOpen})}
@@ -87,7 +86,7 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
               size={30}
               color={'#ffffff'}
               loading={this.props.isPending}
-              />
+            />
           </div>
       </div>
     );

@@ -32,6 +32,7 @@ class Message extends PureComponent<MessageProps, any> {
         return (
           <Youtube
             videoId={getYoutubeUrlId(messageBody.body as string)}
+            className={'youtube-player'}
             opts={youtubeOpt}
           />
         )
@@ -41,7 +42,6 @@ class Message extends PureComponent<MessageProps, any> {
             <img className={'message-img'}
                  alt={messageBody.body as string}
                  src={messageBody.body as string}
-                 width={500}
             />
           </a>
         )

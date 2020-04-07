@@ -4,7 +4,12 @@ import Message from "./parts/Message/Message";
 import { Message as MessageType}  from "../../../../../../models/messages"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { subscribeIsTyping, subscribeMessage} from "../../../../../../redux/actions/socket"
+import {
+  subscribeIsTyping,
+  subscribeMessage,
+  unsubscribeIsTyping,
+  unsubscribeMessage
+} from "../../../../../../redux/actions/socket"
 import {User} from "../../../../../../models/user";
 import {MessageListProps} from "./models/MessageList";
 import {checkIfEmpty} from "../../../../../../service/utilities";
@@ -20,6 +25,11 @@ class MessageList extends Component<MessageListProps> {
   componentDidMount(): void {
     this.props.subscribeMessage();
     this.props.subscribeIsTyping();
+  }
+
+  componentWillUnmount(): void {
+    this.props.unsubscribeMessage();
+    this.props.unsubscribeIsTyping();
   }
 
   componentDidUpdate(prevProps: Readonly<MessageListProps>, prevState: Readonly<{}>, snapshot?: any): void {
@@ -67,7 +77,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     subscribeMessage: bindActionCreators(subscribeMessage, dispatch),
-    subscribeIsTyping: bindActionCreators(subscribeIsTyping, dispatch)
+    subscribeIsTyping: bindActionCreators(subscribeIsTyping, dispatch),
+    unsubscribeMessage: bindActionCreators(unsubscribeMessage, dispatch),
+    unsubscribeIsTyping: bindActionCreators(unsubscribeIsTyping, dispatch)
   }
 }
 

@@ -41,6 +41,13 @@ export const unsubscribeMessage: ActionCreator<SocketAction> = () => {
   }
 };
 
+  export const unsubscribeIsTyping: ActionCreator<SocketAction> = () => {
+  return {
+    event: "typing",
+    leave: true
+  }
+};
+
 export const sendMessage: ActionCreator<SocketAction> = (message: Message) => {
   return {
     event: "message",
