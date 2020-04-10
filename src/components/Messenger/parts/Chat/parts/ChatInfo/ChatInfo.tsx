@@ -70,11 +70,11 @@ class ChatInfo extends PureComponent<ChatInfoProps,Modal> {
               <FontAwesomeIcon icon={faTimes} className={'cancel'}
                                onClick={() => this.setState({isOpen:!this.state.isOpen, mounted: true})}
               />
-              </ThreadList>
-              <div className='thread-user-message__list'>
-                <ThreadListInbox/>
-              </div>
-              <ThreadOut/>
+            </ThreadList>
+            <div className='thread-user-message__list'>
+              <ThreadListInbox/>
+            </div>
+            <ThreadOut/>
             </div>
           </Anime>
           <div className={'chat-info'}>

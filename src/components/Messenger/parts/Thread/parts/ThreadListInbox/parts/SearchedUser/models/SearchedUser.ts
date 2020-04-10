@@ -2,6 +2,7 @@ import {User} from "../../../../../../../../../models/user";
 
 export interface SearchedUserProps {
   createNewThread: (currentUser: string, user:string) => void;
+  addThreadSocket: (currentUser: string, user:string) => void;
   searchedUser: User;
   setIsEmpty: (isEmpty: boolean) => void;
   user: User;

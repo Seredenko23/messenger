@@ -2,7 +2,8 @@ import {
   THREAD_ERROR,
   THREAD_PENDING,
   THREAD_SUCCESS,
-  ADD_THREAD, CHANGE_CURRENT_THREAD
+  ADD_THREAD,
+  CHANGE_CURRENT_THREAD, ADD_THREAD_SOCKET
 } from "../actions/thread";
 
 import { ThreadState } from "./types/ThreadState";
@@ -16,6 +17,11 @@ const initialState: ThreadState = {
 
 export const threadReducer: Reducer<ThreadState> = (state = initialState, action) => {
   switch (action.type) {
+    case CHANGE_CURRENT_THREAD:
+      return {
+        ...state,
+        currentThread: action.payload
+      };
     case THREAD_SUCCESS:
       return {
         ...state,
@@ -36,13 +42,13 @@ export const threadReducer: Reducer<ThreadState> = (state = initialState, action
     case ADD_THREAD:
       return {
         ...state,
-        threads: [ ...state.threads, action.payload.thread ]
+        threads: [ ...state.threads, action.payload]
       };
-    case CHANGE_CURRENT_THREAD:
+    case ADD_THREAD_SOCKET:
       return {
         ...state,
-        currentThread: action.payload.thread
-      };
+        threads: [ ...state.threads, action.payload]
+      }
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React, {Component, FormEvent} from 'react';
 import { bindActionCreators } from "redux";
-import { registerUser } from "../../redux/actions/sign-up";
+import {registerClear, registerUser} from "../../redux/actions/sign-up";
 import { connect } from "react-redux";
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
@@ -9,6 +9,8 @@ import RedirectLink from "../RedirectLink/RedirectLink";
 import './SignUp.scss'
 import {SignUpProps, SignUpState} from "./models/SignUp";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import {HashLoader} from "react-spinners";
+import {Redirect} from "react-router";
 
 class SignUp extends Component<SignUpProps, SignUpState> {
   constructor(props) {
@@ -20,6 +22,10 @@ class SignUp extends Component<SignUpProps, SignUpState> {
       email: '',
       password: '',
     }
+  }
+
+  componentDidMount(): void {
+    this.props.registerClear()
   }
 
   changeHandle = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -42,6 +48,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
           <div className={'header-wrapper'}>
             <h1>Sign up</h1>
           </div>
+          {this.props.registrationSucceed && <Redirect to={'log-in'}/>}
           {this.props.error && <ErrorMessage error={this.props.error} />}
           <label className={'sing-up-label'}>First Name</label>
           <FormInput type="text"
@@ -89,6 +96,12 @@ class SignUp extends Component<SignUpProps, SignUpState> {
           <RedirectLink link={'log-in'}>
             Login
           </RedirectLink>
+          <HashLoader
+            css={'left: 50%; transform: translateX(-50%);'}
+            size={60}
+            color={'#624fbf'}
+            loading={this.props.isPending}
+          />
         </form>
       </div>
     );
@@ -97,13 +110,16 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.signUp.error
+    error: state.signUp.error,
+    isPending: state.signUp.registerIsPending,
+    registrationSucceed: state.signUp.registrationSucceed
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     registerUser: bindActionCreators(registerUser, dispatch),
+    registerClear: bindActionCreators(registerClear, dispatch)
   }
 };
 

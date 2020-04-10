@@ -41,9 +41,16 @@ export const unsubscribeMessage: ActionCreator<SocketAction> = () => {
   }
 };
 
-  export const unsubscribeIsTyping: ActionCreator<SocketAction> = () => {
+export const unsubscribeIsTyping: ActionCreator<SocketAction> = () => {
   return {
     event: "typing",
+    leave: true
+  }
+};
+
+export const unsubscribeSearchableUser: ActionCreator<SocketAction> = () => {
+  return {
+    event: "search",
     leave: true
   }
 };
@@ -88,7 +95,6 @@ export const changeRoom: ActionCreator<SocketAction> = (threadId: string) => {
 }
 
 export const setIsTyping: ActionCreator<SocketAction> = (isTyping: boolean) => {
-  console.log(isTyping)
   return {
     event: 'typing',
     emit: true,

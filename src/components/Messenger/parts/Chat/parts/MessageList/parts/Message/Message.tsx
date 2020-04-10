@@ -38,7 +38,9 @@ class Message extends PureComponent<MessageProps, any> {
         )
       case 'image':
         return (
-          <a href={messageBody.body as string}>
+          <a href={messageBody.body as string}
+             target="_blank"
+          >
             <img className={'message-img'}
                  alt={messageBody.body as string}
                  src={messageBody.body as string}

@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
-import {bindActionCreators, Dispatch} from "redux";
-import {getThreads} from "../../../../../../redux/actions/thread";
 import {connect} from "react-redux";
 import ThreadUser from "./parts/ThreadUser/ThreadUser";
-import {subscribeSearchableUser} from "../../../../../../redux/actions/socket";
 import SearchedUser from "./parts/SearchedUser/SearchedUser";
 import {ThreadListInboxProps} from "./models/ThreadListInbox";
+import {bindActionCreators, Dispatch} from "redux";
+import {getThreads} from "../../../../../../redux/actions/thread";
 
 class ThreadListInbox extends Component<ThreadListInboxProps> {
+
   componentDidMount(): void {
-    this.props.subscribeSearchableUser();
-    this.props.getThreads(this.props.user._id);
+    this.props.getThreads(this.props.user._id)
   }
 
   renderList = (): React.Component => {
-    let list: any;
+    let list;
     if(this.props.isEmpty) {
       list = this.props.threads.map(thread => {
         const className = this.props.currentThread._id === thread._id ? 'active' : ''
@@ -47,9 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    getThreads: bindActionCreators(getThreads, dispatch),
-    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch),
+    getThreads: bindActionCreators(getThreads, dispatch)
   }
-};
+}
 
-export default connect(mapStateToProps,mapDispatchToProps)(ThreadListInbox);
+export default connect(mapStateToProps, mapDispatchToProps)(ThreadListInbox);
