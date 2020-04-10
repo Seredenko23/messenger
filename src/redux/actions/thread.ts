@@ -1,13 +1,14 @@
 import {Action, ActionCreator, Dispatch} from "redux";
 import {Thread} from "../../models/Thread";
 import {getThreadByUserId, createThread} from "../../service/thread";
+import {SocketAction} from "./types/SocketActions";
 
-export const THREAD_PENDING: string = 'ACTION_REGISTER_PENDING';
+export const THREAD_PENDING: string = 'ACTION_THREAD_PENDING';
 export const ADD_THREAD: string = 'ACTION_ADD_THREAD';
 export const THREAD_SUCCESS: string = 'ACTION_THREAD_SUCCESS';
 export const THREAD_ERROR: string = 'ACTION_THREAD_ERROR';
 export const CHANGE_CURRENT_THREAD: string = 'ACTION_CHANGE_CURRENT_THREAD';
-
+export const ADD_THREAD_SOCKET: string = 'SOCKET:ACTION_ADD_THREAD'
 
 const threadPending: ActionCreator<Action> = () => {
   return {
@@ -48,8 +49,32 @@ const threadError: ActionCreator<Action> = (error: string) => {
 export const changeCurrentThread: ActionCreator<Action> = (thread: Thread) => {
   return {
     type: CHANGE_CURRENT_THREAD,
+    payload: thread
+  }
+}
+
+export const subscribeNewThread: ActionCreator<SocketAction> = () => {
+  return {
+    event: 'new thread',
+    handle: ADD_THREAD_SOCKET
+  }
+}
+
+export const unsubscribeNewThread: ActionCreator<SocketAction> = () => {
+  return {
+    event: "new thread",
+    leave: true
+  }
+};
+
+export const addThreadSocket: ActionCreator<SocketAction> = (currentUser: string, user: string) => {
+  return {
+    event: 'new thread',
+    emit: true,
     payload: {
-      thread: thread
+      currentUser: currentUser,
+      user: user,
+      token: sessionStorage.getItem('token')
     }
   }
 }

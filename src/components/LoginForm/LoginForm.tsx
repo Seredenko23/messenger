@@ -7,10 +7,10 @@ import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
 import {Redirect, withRouter} from "react-router";
 import {checkIfEmpty} from "../../service/utilities";
-import {User} from "../../models/user";
 import {LoginFormProps, LoginFormState} from "./models/LoginForm";
 import RedirectLink from "../RedirectLink/RedirectLink";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { HashLoader } from "react-spinners";
 
 class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
@@ -76,6 +76,12 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
           <RedirectLink link={'sign-up'}>
             Sign-up
           </RedirectLink>
+          <HashLoader
+            css={'left: 50%; transform: translateX(-50%);'}
+            size={60}
+            color={'#624fbf'}
+            loading={this.props.isPending}
+          />
         </div>
       </div>
     </div>

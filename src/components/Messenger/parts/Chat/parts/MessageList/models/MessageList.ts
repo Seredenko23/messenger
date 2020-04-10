@@ -5,6 +5,8 @@ export interface MessageListProps {
   messages: MessageType[];
   subscribeMessage: () => void;
   subscribeIsTyping: () => void;
+  unsubscribeMessage: () => void;
+  unsubscribeIsTyping: () => void;
   user: User;
   isTyping: boolean
 }

@@ -26,7 +26,7 @@ class LinkPreview extends Component<LinkPreviewProps, LinkPreviewState> {
   }
 
   clickHandler = () => {
-    window.location.href = this.props.url
+    window.open(this.props.url);
   }
 
   render() {
@@ -34,14 +34,19 @@ class LinkPreview extends Component<LinkPreviewProps, LinkPreviewState> {
       <div className={`link-preview-wrapper ${this.props.type}`}
            onClick={this.clickHandler}
       >
-        <img alt={this.state.imgURL}
+        {this.state.imgURL ? (<img alt={this.state.imgURL}
              src={this.state.imgURL}
              width={100}
              height={100}
-        />
+        />) : (
+          <div className={'letter'}>
+            {this.state.title[0]}
+          </div>
+        )}
         <div className={'link-preview-text'}>
           <p>{this.state.title}</p>
           <a href={this.props.url}
+             target="_blank"
              className={'fake-link'}>
             {this.state.host}
           </a>

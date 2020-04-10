@@ -1,4 +1,5 @@
 export interface RegisterState {
   registerIsPending: boolean;
-  error: Error | null
+  error: Error | null;
+  registrationSucceed: boolean;
 }

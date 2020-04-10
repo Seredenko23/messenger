@@ -5,6 +5,8 @@ import {regUser} from "../../service/signUp";
 export const REGISTER_PENDING: string = 'ACTION_REGISTER_PENDING';
 export const REGISTER_SUCCESS: string = 'ACTION_REGISTER_SUCCESS';
 export const REGISTER_ERROR: string = 'ACTION_REGISTER_ERROR';
+export const REGISTER_SUCCESS_CLEAR: string = 'ACTION_REGISTER_SUCCESS_CLEAR';
+
 
 const register: ActionCreator<Action> = () => {
   return {
@@ -13,10 +15,15 @@ const register: ActionCreator<Action> = () => {
   }
 };
 
+export const registerClear: ActionCreator<Action> = () => {
+  return {
+    type: REGISTER_SUCCESS_CLEAR,
+  }
+};
+
 const registerSuccess: ActionCreator<Action> = () => {
   return {
-    type: REGISTER_SUCCESS,
-    payload: false,
+    type: REGISTER_SUCCESS
   }
 };
 

@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {createNewThread, getThreads} from "../../../../../../../../redux/actions/thread";
+import {addThreadSocket, createNewThread, getThreads} from "../../../../../../../../redux/actions/thread";
 import './SearchedUser.scss'
 import { setIsEmpty } from "../../../../../../../../redux/actions/socket";
 import {SearchedUserProps} from "./models/SearchedUser";
 
 class SearchedUser extends Component<SearchedUserProps> {
-  clickHandler = () => {
-    this.props.createNewThread(this.props.searchedUser._id, this.props.user._id)
-    this.props.setIsEmpty(true)
-    this.props.getThreads(this.props.user._id)
+  clickHandler = async () => {
+    await this.props.addThreadSocket(this.props.searchedUser._id, this.props.user._id)
+    await this.props.setIsEmpty(true)
+    //this.props.getThreads(this.props.user._id)
   }
 
   render() {
@@ -35,7 +35,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createNewThread: bindActionCreators(createNewThread, dispatch),
     setIsEmpty: bindActionCreators(setIsEmpty, dispatch),
-    getThreads: bindActionCreators(getThreads, dispatch)
+    getThreads: bindActionCreators(getThreads, dispatch),
+    addThreadSocket: bindActionCreators(addThreadSocket, dispatch)
   }
 }
 

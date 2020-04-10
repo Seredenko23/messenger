@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ThreadList.scss'
 import {bindActionCreators, Dispatch} from "redux";
-import {clearSearchableUser, getSearchableUser, subscribeSearchableUser, setIsEmpty} from "../../../../../../redux/actions/socket";
+import {clearSearchableUser, getSearchableUser, setIsEmpty} from "../../../../../../redux/actions/socket";
 import {connect} from "react-redux";
 import {ThreadListProps, ThreadListState} from "./models/ThreadList";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -13,10 +13,6 @@ class ThreadList extends Component<ThreadListProps, ThreadListState> {
     this.state = {
       search: ''
     }
-  }
-
-  componentDidMount(): void {
-    this.props.subscribeSearchableUser()
   }
 
   handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -53,7 +49,6 @@ class ThreadList extends Component<ThreadListProps, ThreadListState> {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    subscribeSearchableUser: bindActionCreators(subscribeSearchableUser, dispatch),
     getSearchableUser: bindActionCreators(getSearchableUser, dispatch),
     clearSearchableUser: bindActionCreators(clearSearchableUser, dispatch),
     setIsEmpty: bindActionCreators(setIsEmpty, dispatch)
